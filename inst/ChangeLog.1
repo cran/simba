@@ -1,0 +1,156 @@
+SIMBA VERSIONS
+
+Version 0.2-5
+	
+	* sim.yo, new function to create and calculate your own 
+	similarity coefficient. data preparation as in sim but you
+	can give your own formula.
+	
+	* dist.tmp, new function to calulate distance between the
+	variables or instances of a data-set in time. The two recordings
+	are to be given as two distinct matrices.
+	
+	* updating an cleaning documentation and data-sets
+	
+	* some functions (e.g. meanea, medea) were skipped
+	
+Version 0.2-4
+	
+	* ads.hot, new function to create artificial data-set with 
+	hotpots of species richness
+	
+	* update to occ.time (printing methods)
+	
+	* com.sim, new function to compare similarities between subsets
+	
+	* sim: added some similarity measures (most of them found in 
+	Shi 1993. the help was updated accordingly.
+	
+	* ads.ternaries: new data-set, which contains artificial data 
+	for the construction of ternary plots to inspect the behavior 
+	of the asymmetric similarity indices in sim.
+	
+	* updated the possibilities of neighbor definition in sim.pat,
+	sim.rel, sim.het, and sim. In a addition to specifying a radius
+	it is now possible to give two radiuses which define a ring
+	around each plot. All other plots falling into the ring are
+	considered as neighbors.
+	
+Version 0.2-3
+	
+	* sim.tmp: similarity of plots in time. all similarity indices 
+	provided by sim can be used to calculate similarity not between 
+	plots but between timesteps
+	
+	* occ.time: new function which allows to track changes in 
+	species composition in time. the basic function is occ.tmp which
+	is called by occ.time to calculate changes in species occurence 
+	for various time steps at once.
+	
+	* sim.relt: significance testing for sim.rel
+	
+	* sim.pat: changes to underlying functions simn and sima lead
+	to minor changes in sim.pat as well. sima and simn changed
+	considerably and handle presence/absence data better now
+	
+	* sim.relt: significance testing for sim.rel
+	
+	* sim.rel: new function for calculating additive partitioning
+	and relative similarity sensu Whittaker
+	
+	* sim.het: significance testing for het2nbs. Furthermore a bug in 
+	the underlying function was fixed
+	
+Version 0.2-2
+	
+	* Updated and added documentation files
+	
+	* Some for-loops are replaced by faster apply-functions.
+	
+	* simdist is now obsolet. sim takes over its functionality.
+	If you give geographic coordinates the geographic distances
+	and related things are calculated in addition to similarities.
+	
+	* sim.pat: new function for calculating similarity between a 
+	focal unit and its neighbours.
+	
+	* het2nbs: automatic calculation of mean similarity between
+	a focal unit and its neighbours (including the variation in 
+	the single values)
+	
+	* aslopect: calculate the similarity of sampling units regarding
+	their aspect and slope at the same time. follows the idea, that,
+	the more shallow the slope the less important are differences in
+	aspect in an ecological sense
+
+Version 0.2-1
+	
+	* meanea: new function for the calculation of running means, can
+	be applied to vectors as well as to data.frames, subsetter must
+	be given
+	
+	* medea: new function for the calculation of running medeans, can
+	be applied to vectors as well as to data.frames, subsetter must
+	be given
+	
+	* aslopect: calculate the similarity of sampling units regarding
+	their aspect and slope at the same time. follows the idea, that,
+	the more shallow the slope the less important are differences in
+	aspect in an ecological sense
+	
+	* dfcor: calculate permuted correlation between a vector and a
+	dataframe with columns each containing a vectorized similarity
+	or dissimilarity matrix.
+	
+	* diffslope, permcor, permcor2: bug fixes
+	
+	* direct, direct2: results are now given as dist-object
+	
+
+Version 0.2-0
+
+	* Rewritten documentation files
+	
+	* bcoov: new function for the calculation of Bray-Curtis distance
+	for one variable
+	
+	* pcol: is now also capable of calculating permuted correlation
+	of a distance matrix (or vector) against a subsetting object 
+	(containing distance classes or similar). background function
+	permcor was rewritten and is now faster. permcor2 and mancor are
+	new written functions to handle the different possibilities of
+	pcol.
+	
+	* diffmean: new functions to calculate the difference in mean
+	and the F-value of two numeric vectors. Inference is obtained 
+	by permutation.
+	
+	* diffmich: new function to calculate the difference in the
+	parameters of Michaelis-Menten Kinetik fitted to PAM data
+	
+	* diffslope: calculating and testing of significance the difference
+	in slope between two regressions.
+	
+	* The most of the functions have now print and plot methods to 
+	obtain nice output and plots.
+	
+
+Version 0.1-1
+
+	* Fixed bugs in documentation
+	
+	* bcoov: new function for the calculation of Bray-Curtis distance
+	for one variable
+	
+	* pcol: calculate permuted correlation on levels or strata. The results
+	are written to a data.frame which then contains for each level the 
+	correlation estimate, the significance after permutation and the number
+	of cases which made up the level
+	
+	* direct and direct2: calculation of direction classes for geographic
+	coordinates with two different class-divisions. classes are fixed and
+	cannot be set by the user (which might come in the future)
+
+Version 0.1-0
+
+	* The first version. Could still be unstable.
