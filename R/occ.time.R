@@ -1,7 +1,7 @@
 "occ.time" <- 
 function(x, y, times=NULL, adjust=TRUE, gen.occ=FALSE, perc=TRUE, nc.acc=FALSE, ...) {	
 	if(is.null(times)){
-	   bac <- occ.tmp(x, y, listin = listin, adjust = adjust, gen.occ=gen.occ, perc=perc, nc.acc=nc.acc)
+	   bac <- occ.tmp(x, y, adjust = adjust, gen.occ=gen.occ, perc=perc, nc.acc=nc.acc)
 	}
 	else{
 	   dat <- x

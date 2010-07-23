@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{dfcor}
 \alias{dfcor}
 \title{ Calculate permuted (Mantel) correlations between one and many variables }
@@ -11,7 +12,7 @@ dfcor(ox, y, method = "pearson", permutations = 1000, ...)
 
 \arguments{
   \item{ox}{ Numeric vector. If it is a similarity matrix (i.e. a \code{dist} object, extract vector via \code{as.vector(x)} beforehand). }
-  \item{y}{ A \code{data.frame} containing numeric vectors to correlate \code{x} with. Number of rows has to equal the length of \code{x} }
+  \item{y}{ A \code{data.frame} containing numeric vectors to correlate \code{ox} with. Number of rows has to equal the length of \code{x} }
   \item{method}{ Method for correlation. Defaults to "pearson". See \code{\link[stats]{cor}} for other possibilities.}
   \item{permutations}{ Number of permutations. Defaults to 1000, which gives reasonable results and allows to test against alpha = 0.001. }
   \item{\dots}{ Further arguments passed to internal functions (i.e. to \code{\link[stats]{cor}}). }
@@ -52,7 +53,27 @@ dfcor(ox, y, method = "pearson", permutations = 1000, ...)
 }
 
 \examples{
-% still to be included
+## load included data
+data(abis)
+
+## obtain several similarity matrices and correlate them
+## with one other matrix.
+# calculate soerensen similarity for species composition data
+abis.soer <- sim(abis.spec, listout = TRUE)[,3]
+# calculate euclidean distances between the plot locations
+abis.geodist <- dist(abis.env[,1:2])
+# calculate the ecological distance according to slope and aspect
+abis.aslopect <- with(abis.env, aslopect(aspect, slope))
+# calculate the ecological distance according to disturbance
+abis.pert <- dist(abis.env[,19-25])
+
+# put distances according to environment together
+abis.envdist <- data.frame(dist = c(abis.geodist), aslopect = c(abis.aslopect), pert = c(abis.pert))
+
+# no mantel correlation between those constructed
+# variables and the similarity in species composition
+dfcor(abis.soer, abis.envdist)
+
 }
 
 \keyword{ methods }

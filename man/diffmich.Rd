@@ -43,9 +43,5 @@ As it uses a \code{for} loop it takes a while to calculate. So get a coffee whil
 
 \seealso{ \code{\link[stats]{nls}}, \code{\link[base]{sample}} }
 
-\examples{
-
-}
-
 \keyword{ methods }
 \keyword{ univar }

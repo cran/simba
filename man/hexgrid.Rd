@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{hexgrid}
 \alias{hexgrid}
 \title{ Produces the nodes of an equidistant grid. }
@@ -31,6 +32,10 @@ hexgrid(x, y, r = 100, nro = 10, nco = 20)
 \references{ \url{http://homepage.mac.com/terhorab/gerald/downloads/whyhexaagons.pdf} }
 
 \author{ Gerald Jurasinski }
+
+\seealso{ 
+	\code{\link[sp]{spsample}} 
+	}
 
 \examples{
 ## produces a grid with r=400:    

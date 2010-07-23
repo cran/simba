@@ -18,7 +18,7 @@ nc.acc=FALSE, ...)
 \arguments{
   \item{x}{ Species data in matrix or database-format representing species occurrence at time step one or throughout a time series. The latter means that you have a table with three columns where the columns represent \code{plots}, \code{species} and \code{occurence} information (in this order!). These are typically exported from a database. When \code{times} are given and data represents more than one time steps it has to be in database format. Conversion is handled automatically - if three columns are in the table it is assumed to be in database format. When there are only three species give the data in database-format. If there are many plots and/or species, internal matrix conversion might be quite slow. }
   \item{y}{ Species data in matrix or database-format representing species occurrence at time step two. Obsolete when \code{times} are given. Otherwise the same as for \code{x} applies. }
-  \item{times}{ A vector describing the timesteps which has to be coercible to a factor. If your data comes from a database and contains species records for different time-steps, just export the time information with the species data. If you have single matrices for each time step, you could reshape them to database format via \code{\link{liste}} and concatenate these or calculate each time step alone. }
+  \item{times}{ When there are more than two timesteps. A vector describing the timesteps which has to be coercible to a factor. If your data comes from a database and contains species records for different time-steps, just export the time information with the species data. If you have single matrices for each time step, you could reshape them to database format via \code{\link{liste}} and concatenate these or calculate each time step alone. }
   \item{adjust}{ Do not change the default behaviour (TRUE) unless you know what you do. Would spare some calculation time if set to FALSE, when your species data do not need adjustment, which means that in both or all time steps, there are exactly the same species and the same plots. However in most cases it will be more convenient  to rely on the function (see details). }
   \item{gen.occ}{ Triggers if general occurrence is regarded or specific occurrence. The latter is default (gen.occ=FALSE) and it means that it is calculated on which exact plots a species is changing. When set to TRUE only general occurence is regarded and it is calculated on how many plots a species occurs more or less then before. See details. }
   \item{perc}{ If output shall be in percentage of species. Defaults to TRUE. }
@@ -49,7 +49,42 @@ nc.acc=FALSE, ...)
 \seealso{ to calculate similarity based on plant species occurrence between time steps see \code{\link{sim.tmp}} }
 
 \examples{
-% Still to be added
+## load included data
+data(bernina)
+
+## how species changed occurrence between first recording
+## and last recording?
+# construct a species matrix that only contains the species
+# that occurred on the summits at the first recording
+first <- veg[summits$year=="1907",]
+first <- first[,colSums(first)>0]
+# make right summit names
+row.names(first) <- as.character(summits$summit[summits$year=="1907"])
+# construct a species matrix that only contains the species
+# that occurred on the summits at the last recording
+last <- veg[summits$year=="2003",]
+last <- last[,colSums(last)>0]
+# make right summit names
+row.names(last) <- as.character(summits$summit[summits$year=="2003"])
+# see that dimensions of first and last differ
+dim(first)
+dim(last)
+# calculate change in occurrence
+changed.occurrence <- occ.tmp(first, last)
+barplot(changed.occurrence$bac, main="percentage of species 
+that changed on ... plots")
+# try the same but species are not given in percentages
+changed.occurrence <- occ.tmp(first, last, perc=FALSE)
+barplot(changed.occurrence$bac, main="number of species that 
+changed on ... plots")
+# there is a lot of info in the output
+changed.occurrence
+
+## how species changed occurrence between recordings?
+## data has to come in list format
+occ.time(veg.lst, times=years)
+
+
 }
 
 \keyword{ methods }

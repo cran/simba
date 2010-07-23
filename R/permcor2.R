@@ -1,5 +1,5 @@
 "permcor2" <- 
-function(x, y, method="pearson", permutations=1000, subset=NULL, complete=TRUE, ...) {
+function(x, y, method="pearson", permutations=1000, subset=NULL, complete=TRUE, loop=FALSE, ...) {
     if (!is.null(subset)) {
         x <- as.vector(x)[subset]
         y <- as.vector(y)[subset]
@@ -17,8 +17,17 @@ function(x, y, method="pearson", permutations=1000, subset=NULL, complete=TRUE, 
 	N <- length(y)
 	statistic <- as.numeric(cor(x, y, method=method, ...))
 	variant <- method
-	permsy <- sapply(1:permutations, function(x) sample(y, N))
-    perms <- as.numeric(cor(x, permsy, method=method, ...))
+	if (loop) {
+		perms <- rep(NA, permutations)
+		for (i in 1:permutations) {
+			permsy <- sample(y, N)
+			perms <- cor(x, y, method=method)
+			}
+		}
+	else {
+		permsy <- sapply(1:permutations, function(x) sample(y, N))
+		perms <- as.numeric(cor(x, permsy, method=method, ...))
+		}
 	if (statistic >= 0) {
 		signif <- sum(perms >= statistic)/permutations
 	}

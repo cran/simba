@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{liste}
 \alias{liste}
 \title{ Convert dist-objects and matrices to database format }

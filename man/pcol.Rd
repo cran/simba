@@ -18,7 +18,7 @@ permcor(x, y, subsetter, method="pearson", permutations=1000,
 alpha=0.05, trace=FALSE, ...)
 
 permcor2(x, y, method="pearson", permutations=1000, subset=NULL, 
-complete=TRUE, ...)
+complete=TRUE, loop=FALSE, ...)
 
 mancor(dis, classes, width=NULL, method="pearson", permutations=1000, 
 alpha=0.05, trace=FALSE, ...)
@@ -38,6 +38,7 @@ alpha=0.05, trace=FALSE, ...)
   \item{complete}{ Should only complete cases be considered? Defaults to TRUE. }
   \item{alpha}{ The initial alpha-level against which should be tested. Depending on sub-function it is internally changed via Bonferroni-correction if necessary. }
   \item{subset}{ If Case is 1 (see \code{details}) a subset of cases from \code{x} and \code{y} can be defined for correlation.}
+  \item{loop}{ Triggers the method for permutation inside the function. Shall it be looped (\code{for}-loop, \code{loop = TRUE}) or be done by an \code{\link[base]{apply}} method (\code{loop = FALSE})? Determines speed. For the most, reasonably huge data sets, the latter will be better. }
   \item{dis}{ Same as \code{x} for \code{mancor}. }
   \item{classes}{ If \code{mancor} shall be run, second item is a vector or \code{dist}-objekt of a variable which defines the strata, or levels for which the permuted correlation shall be calculated. Doesn't have to be a factor but it has to be convertible into factor. see \code{Details} for more.}
   \item{permcor}{ (In \code{plot.permcor}) an object returned by \code{permcor2} is easily plotted with \code{plot.permcor}. The actual correlation value is plotted against an histogram of the distribution of the permuted values. }
@@ -96,7 +97,7 @@ alpha=0.05, trace=FALSE, ...)
 
 \note{ Depending on the background-function and the size of the matrices or vectors it may take a while to calculate. The slowest is \code{mancor} (case 3). }
 
-\seealso{ \code{\link[vegan]{mantel}} for a different implementation of Mantel tests, and \code{\link[vegan]{mantell}}, \code{\link[stats]{cor.test}} }
+\seealso{ \code{\link[vegan]{mantel}} for a different implementation of Mantel tests, \code{\link[stats]{cor.test}} }
 
 \examples{
     

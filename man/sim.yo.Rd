@@ -25,7 +25,7 @@ normalize = FALSE, listin = FALSE, listout = FALSE, ...)
   \item{normalize}{ Logical value indicating whether the values for 
   \code{a}, \code{b} and \code{c} which are calculated in the process should be normalized to 100\% (per row, which means per plot comparison). If normalize = TRUE an asymmetric index must be chosen (see details in \code{\link[simba]{sim}}).}
   \item{listin}{ if \code{x} is given in database (list) format this must be set to TRUE (there is no automatic detection of the format)}
-  \item{listout}{ If output is wanted in database format rather than as a \code{\link[stats]{dist}}-object set this to TRUE. Output is automatically given in database-format, when \code{\link[simba]{coord}} is specified. }
+  \item{listout}{ If output is wanted in database format rather than as a \code{\link[stats]{dist}}-object set this to TRUE. Output is automatically given in database-format, when \code{coord} is specified. }
   \item{\dots}{ Arguments to other functions }
 }
 \details{
@@ -45,15 +45,14 @@ normalize = FALSE, listin = FALSE, listout = FALSE, ...)
     Sørensen, T. (1948) A method of establishing groups of equal amplitude in plant sociology based on similarity of species content. \emph{Biologiske Skrifter} \bold{5}: 1-34.   
 }
 
-\author{ Gerald Jurasinski \email{terhorab@mac.com} }
+\author{ Gerald Jurasinski \email{gerald.jurasinski@uni-rostock.de} }
 
 \note{ In general, concepts of data-handling are taken from \code{\link[vegan]{vegdist}} and the calculation of \code{a}, \code{b}, \code{c} and \code{d} is taken from \code{\link[ade4]{dist.binary}}. Thanks to Jari Oksanen for his \code{vegan} package and the idea to provide a custom build distance formula.
 }
 
 \seealso{ 
-	\code{\link[vegan]{vegdist}}, \code{\link[ade4]{dist.binary}}, 
-	\code{\link[labdsv]{dsvdis}}, \code{\link[stats]{dist}} for other dissimilarity coefficients, and \code{\link[stats]{sim}} for a variety of formulae for similarity coefficients.
-	}
+	\code{\link[vegan]{vegdist}}, \code{\link[vegan]{designdist}}, \code{\link[ade4]{dist.binary}}, 
+	\code{\link[labdsv]{dsvdis}}, \code{\link[stats]{dist}} for other dissimilarity coefficients, and \code{\link{sim}} for a variety of formulae for similarity coefficients.
 }
 
 \examples{

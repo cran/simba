@@ -6,14 +6,15 @@
 }
 
 \usage{
-aslopect(asp, slo, names=rownames(asp), listout = FALSE)
+aslopect(asp, slo, names=rownames(asp), fc=FALSE, listout = FALSE)
 }
 
 \arguments{
-  \item{asp}{ Numeric vector with aspect values, given in degree. Expects values between 0\eqn{^\circ}{°} (North) and 180\eqn{^\circ}{°}/-180\eqn{^\circ}{°} (South). Eastward directions count positive, westward directions count negative. }
-  \item{slo}{ Numeric vector with slope inclination values. Expects values between 0\eqn{^\circ}{°}(flat) and 90\eqn{^\circ}{°} (vertical wall)}
+  \item{asp}{ Numeric vector with aspect values, given in degree. Expects values between 0\eqn{^\circ}{°} (North) and 180\eqn{^\circ}{°}/-180\eqn{^\circ}{°} (South). Eastward directions count positive, westward directions count negative. Alternatively the aspect values can be given in degrees of a full circle up to 359\eqn{^\circ}{°} starting from 0\eqn{^\circ}{°} (North). In the latter case fc has to be set to \code{TRUE}. }
+  \item{slo}{ Numeric vector with slope inclination values. Expects values between 0\eqn{^\circ}{°}(flat) and 90\eqn{^\circ}{°} (vertical wall). }
   \item{names}{ Plot names, defaults to the rownames of \code{asp}, but a separate vector can be specified. Its length has to match the length of \code{asp} and \code{slo}. }
-  \item{listout}{ Shall the results be given in list-format (\code{data.frame}). Defaults to FALSE which means that a matrix of class \code{\link[stats]{dist}} is returned}
+  \item{fc}{ Triggers conversion from full circle degrees to half circle degrees. Set this to \code{TRUE} if full circle degrees (from 0\eqn{^\circ}{°} to 360\eqn{^\circ}{°}) are given in \code{asp}. }
+  \item{listout}{ Shall the results be given in list-format (\code{data.frame}). Defaults to FALSE which means that a matrix of class \code{\link[stats]{dist}} is returned. }
 }
 
 \details{
@@ -30,9 +31,6 @@ To obtain a distance measure integrating aspect and inclination the model of a u
 }
 
 \author{ Gerald Jurasinski }
-
-\seealso{ 
-}
 
 \examples{
 data(abis)

@@ -2,17 +2,21 @@
 \name{diffslope}
 \alias{diffslope}
 \alias{diffslope2}
+\alias{diffic}
 \alias{plot.dsl}
-\title{ Calculate the difference in slope of two regression lines }
+\title{ Calculate the difference in slope or intercept of two regression lines }
 \description{The function can be used to calculate the difference in slope between two datasets containing each two vectors. Follows an idea of Nekola & White (1999) for calculating the statistical inference of the difference in slope between two regression lines. diffslope2 has the same purpose as diffslope but implementation is without for-loop. The plot method allows easy plotting of the actual difference in slope against the distribution of permuted values.
 }
 
 \usage{
-diffslope(x1, y1, x2, y2, permutations = 1000, resc.x = FALSE, 
-        resc.y = TRUE, trace=FALSE, ...)
+diffslope(x1, y1, x2, y2, permutations = 1000, ic = FALSE,
+		resc.x = FALSE, resc.y = TRUE, trace=FALSE, ...)
         
 diffslope2(x1, y1, x2, y2, permutations = 1000, resc.x = FALSE, 
         resc.y = TRUE, ...)
+        
+diffic(x1, y1, x2, y2, permutations = 1000, resc.x = FALSE, 
+        resc.y = FALSE, trace=FALSE, ...)
         
 \method{plot}{dsl}(x, y, ...)
 }
@@ -23,24 +27,30 @@ diffslope2(x1, y1, x2, y2, permutations = 1000, resc.x = FALSE,
   \item{x2}{ vector containing a second independent variable (for instance distance between plots). can be the same as in x1. }
   \item{y2}{ vector containing a variable dependent on \code{x2} (for instance similarity between the plots. must have the same length as \code{x2}. }
   \item{permutations}{ number of permutations }
-  \item{resc.x}{ Shall the values of the independent variables be rescaled to a common mean? }
-  \item{resc.y}{ Shall the values of the dependent variables be rescaled to a common mean? Defaults to TRUE (Nekola & White 1999). }
+  \item{ic}{ Shall the difference in intercept be tested? Defaults to \code{FALSE}. }
+  \item{resc.x}{ Shall the values of the independent variables be rescaled to a common mean? Defaults to FALSE.}
+  \item{resc.y}{ Shall the values of the dependent variables be rescaled to a common mean? Defaults to TRUE (Nekola & White 1999) for \code{diffslope} and to FALSE for \code{diffic}. }
   \item{trace}{ Set to true if progress shall be printed with increasing numbers. Defaults to FALSE }
   \item{\dots}{ Arguments to other functions (for instance to \code{\link[stats]{lm}}, which is used to calculate the regression lines). }
-  \item{x}{ \code{dsl}-object (given back by \code{diffslope}) which is to be plotted. }
+  \item{x}{ \code{dsl}-object (given back by \code{diffslope} or \code{diffic}) which is to be plotted. }
   \item{y}{ Plotting object, usually not necessary }
 }
 
 \details{
-As the function was initially build to easily calculate the difference in slope between the regression lines of distance decay plots, the independent vectors are meant to contain distance values whereas the dependent vectors should represent similarity values. But you can use it for anything else, as you wish. The vectors belonging together are formed into a {\link[base]{data.frame}}. For each permutation run the rows are interchanged randomly between the two \code{\link[base]{data.frame}}s and the difference in slope calculated thereafter is calculated and collected into a vector. The p-value is then computed as the ratio between the number of cases where the differences in slope exceed the difference in slope of the inital configuration and the number of permutations.
+\code{diffslope}: As the function was initially build to easily calculate the difference in slope between the regression lines of distance decay plots, the independent vectors are meant to contain distance values whereas the dependent vectors should represent similarity values. But you can use it for anything else, as you wish. The vectors belonging together are formed into a {\link[base]{data.frame}}. For each permutation run the rows are interchanged randomly between the two \code{\link[base]{data.frame}}s and the difference in slope calculated thereafter is calculated and collected into a vector. The p-value is then computed as the ratio between the number of cases where the differences in slope exceed the difference in slope of the inital configuration and the number of permutations.
+
+The same applies to \code{diffic}. However, this function tests whether the intercepts of the two relationships are significantly different. Although \code{resc.y} has been kept as an option, it is not wise to do so, when one is testing for differences in intercept.
 
 If the difference in slope returns negative, the slope (distance decay) of the second relationship is less pronounced, if it returns positive, the second relationship exhibits a stronger distance decay (slope) than the first. This holds for distance decay relationships. If \code{y} increases with \code{x}, it is vice versa.
 
 As it uses a \code{for} loop, it takes a while to calculate. So get a coffee while it is running, or set \code{trace} to TRUE to avoid being bored ...
+
 }
 
 \value{
   Returns a list giving the function call, the difference in slope, the significance of this difference, and the number of permutations. If you want to change the way \code{\link[stats]{lm}} is computed you must send the arguments to \code{\link[stats]{lm}} via \dots. Per default it is calculated with the default arguments of \code{\link[stats]{lm}}.
+  
+  In case of \code{diffic} there is still differences in slope reported (although differences in intercept have been calculated). So it's just a false label here. This will be updated soon.
 }
 
 \references{
@@ -65,8 +75,8 @@ As it uses a \code{for} loop, it takes a while to calculate. So get a coffee whi
 \examples{
 data(abis)
 names(abis.env) ##take a look at the data
-pert.dist <- 1-vegdist(abis.env[,19:25]) 
-##calculate the similarity (Bray-Curtis) between the plots 
+pert.dist <- 1-vegdist(abis.env[,19:25], "euclidean") 
+##calculate the distance (Euclidean) between the plots 
 ##regarding disturbance variables
 
 soil.dist <- 1-vegdist(abis.env[,c(6,27:28)]) 
@@ -111,6 +121,7 @@ plot(dist, struc)
 abline(lm(struc~dist), col="red4")
 ##is the slope significantly different?
 res <- diffslope(dist, soil, dist, struc)
+res2 <- diffic(dist, soil, dist, struc)
 
 ##go for a coffee, as it takes a while...
 

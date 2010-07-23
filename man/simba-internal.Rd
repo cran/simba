@@ -4,6 +4,7 @@
 \alias{print.diffmich}
 \alias{print.dmn}
 \alias{print.dsl}
+\alias{print.dsl2}
 \alias{print.occtmp}
 \alias{print.pclist}
 \alias{print.permcor}
@@ -17,6 +18,7 @@ Mainly print functions for giving nice output.
 \method{print}{diffmich}(x, digits = max(3, getOption("digits") - 3), ...)
 \method{print}{dmn}(x, digits = max(3, getOption("digits") - 3), ...)
 \method{print}{dsl}(x, digits = max(3, getOption("digits") - 3), ...)
+\method{print}{dsl2}(x, digits = max(3, getOption("digits") - 3), ...)
 \method{print}{occtmp}(x, digits = max(3, getOption("digits") - 3), ...)
 \method{print}{pclist}(x, digits = max(3, getOption("digits") - 3), ...)
 \method{print}{permcor}(x, digits = max(3, getOption("digits") - 3), ...)

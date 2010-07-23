@@ -2,6 +2,7 @@
 function(obj, x="NBX", y="NBY", entry=NULL, factorize=TRUE, splist=FALSE){
     if (class(obj)=="dist"){
         obj.v <- as.vector(obj)
+        if(is.null(attr(obj, "Labels"))) attr(obj, "Labels")  <- as.character(c(1:attr(obj, "Size")))
         name.mat <- outer(attr(obj, "Labels"), attr(obj, "Labels"), "paste")
         name.list <- name.mat[row(name.mat) > col(name.mat)]
     }

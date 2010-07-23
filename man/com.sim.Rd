@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{com.sim}
 \alias{com.sim}
 \title{ Compare mean similarity between subsets of data }

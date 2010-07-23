@@ -1,3 +1,4 @@
+\encoding{UTF-8}
 \name{dist.tmp}
 \alias{dist.tmp}
 \title{ Calculate the distance between the instances or variables of two similar data-sets. }
@@ -30,7 +31,7 @@ dist.tmp(x, y, method = "euclidean", margin = 1, adjust=TRUE)
 
 \author{ Gerald Jurasinski \email{terhorab@mac.com} }
 
-\seealso{ \code{\link[vegan]{vegdist}}, \code{\link[base]{dist}}, \code{\link[simba]{sim}} }
+\seealso{ \code{\link[vegan]{vegdist}}, \code{\link[stats]{dist}}, \code{\link[simba]{sim}} }
 
 \examples{
 data(abis)

@@ -1,6 +1,6 @@
 "dist.tmp" <- 
 function(x, y, method = "euclidean", margin = 1, adjust=TRUE) {	
-	if (!is.na(pmatch(method, "euclidian"))) 
+	if (!is.na(pmatch(method, "euclidean"))) 
         method <- "euclidean"
     METHODS <- c("manhattan", "euclidean", "bray", "canberra", 
         "kulczynski", "gower", "jaccard")
@@ -20,7 +20,7 @@ function(x, y, method = "euclidean", margin = 1, adjust=TRUE) {
 	nms1 <- names(data.frame(df1))
     nms2 <- names(data.frame(df2))
 	n.spc1 <- ncol(df1)
-	n.spc1 <- ncol(df1)
+	n.spc2 <- ncol(df2)
 #	this rownames are valid if adjust=FALSE
     plots <- rownames(data.frame(df1))
     if (adjust) {
@@ -62,7 +62,7 @@ function(x, y, method = "euclidean", margin = 1, adjust=TRUE) {
     if(method==3){
         dis <- rowSums(abs(df1-df2))/rowSums(df1+df2)
         dis[d==0] <- 0
-        dis[o1==TRUE] <- -dis[o1==TRUE]
+        ##dis[o1==TRUE] <- -dis[o1==TRUE]
     }
     if(method==4){
         dis <- (rowSums(abs(df1-df2))/rowSums(df1+df2))/apply((df1-df2), 1, function(x) sum(x!=0))

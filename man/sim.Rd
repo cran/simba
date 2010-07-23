@@ -20,14 +20,13 @@ listin = FALSE, listout = FALSE, ...)
   or matrix contains abundances or frequencies they are transformed 
   automatically.}
   \item{coord}{ A \code{data.frame} with two columns containing the coordinate values of the sampling units. If given, it triggers the simultaneous calculation of the geographical distances between the sampling units, the coordinates of virtual centre-points between all possible pairs of plots, and the geographical distances in either x- or y-direction. If \code{coord} is given, output is always in \code{database} format (no matrix). }
-  \item{method}{ Binary Similarity index (see \code{Details} for references and formulae), partial match to  
-  \code{"soerensen"}, \code{"jaccard"}, \code{"ochiai"}, \code{"mountford"}, \code{"whittaker"}, \code{"lande"}, \code{"wilsonshmida"}, \code{"cocogaston"}, \code{"magurran"},    \code{"harrison"}, \code{"cody"}, \code{"williams"},    \code{"williams2"}, \code{"harte"}, \code{"simpson"},    \code{"lennon"},   \code{"weiher"}, \code{"ruggiero"},    \code{"lennon2"}, \code{"rout1ledge"}, \code{"rout2ledge"},    \code{"rout3ledge"}, \code{"sokal1"},    \code{"dice"},    \code{"kulcz1insky"}, \code{"kulcz2insky"}, \code{"mcconnagh"},    \code{"manhattan"}, \code{"simplematching"}, \code{"margaleff"},    \code{"pearson"}, \code{"roger"}, \code{"baroni"},    \code{"dennis"}, \code{"fossum"}, \code{"gower"}, \code{"legendre"},    \code{"sokal2"}, \code{"sokal3"}, \code{"sokal4"}, \code{"stiles"}, \code{"yule"}, \code{"michael"}, \code{"hamann"}, \code{"forbes"}, \code{"chisquare"}, \code{"peirce"}, \code{"eyraud"}, \code{"simpson2"}, \code{"legendre2"}, \code{"fager"}, \code{"maarel"}, \code{"lamont"}, \code{"johnson"}, \code{"sorgenfrei"}, \code{"johnson2"}. See details. 
+  \item{method}{ Binary Similarity index (see \code{Details} for references and formulae), partial match to \code{"soerensen"}, \code{"jaccard"}, \code{"ochiai"}, \code{"mountford"}, \code{"whittaker"}, \code{"lande"}, \code{"wilsonshmida"}, \code{"cocogaston"}, \code{"magurran"},    \code{"harrison"}, \code{"cody"}, \code{"williams"},    \code{"williams2"}, \code{"harte"}, \code{"simpson"},    \code{"lennon"},   \code{"weiher"}, \code{"ruggiero"},    \code{"lennon2"}, \code{"rout1ledge"}, \code{"rout2ledge"},    \code{"rout3ledge"}, \code{"sokal1"},    \code{"dice"},    \code{"kulcz1insky"}, \code{"kulcz2insky"}, \code{"mcconnagh"},    \code{"manhattan"}, \code{"simplematching"}, \code{"margaleff"},    \code{"pearson"}, \code{"roger"}, \code{"baroni"},    \code{"dennis"}, \code{"fossum"}, \code{"gower"}, \code{"legendre"},    \code{"sokal2"}, \code{"sokal3"}, \code{"sokal4"}, \code{"stiles"}, \code{"yule"}, \code{"michael"}, \code{"hamann"}, \code{"forbes"}, \code{"chisquare"}, \code{"peirce"}, \code{"eyraud"}, \code{"simpson2"}, \code{"legendre2"}, \code{"fager"}, \code{"maarel"}, \code{"lamont"}, \code{"johnson"}, \code{"sorgenfrei"}, \code{"johnson2"}. See details. 
   }
   \item{dn}{ Neighbor definition. A geographic distance represented by a numeric or a two value vector defining a ring around each plot. Only takes effect when \code{coord} != NULL. If specified, the output does only contain similarities between neighboring plots. A plot is a neighbour to any given plot if it is within the range of the neighbor definition. See details.}
   \item{normalize}{ Logical value indicating whether the values for 
   \code{a}, \code{b} and \code{c} which are calculated in the process should be normalized to 100\% (per row, which means per plot comparison). If normalize = TRUE an asymmetric index must be chosen (see details).}
   \item{listin}{ if \code{x} is given in database (list) format this must be set to TRUE (there is no automatic detection of the format)}
-  \item{listout}{ If output is wanted in database format rather than as a \code{\link[stats]{dist}}-object set this to TRUE. Output is automatically given in database-format, when \code{\link[simba]{coord}} is specified. }
+  \item{listout}{ If output is wanted in database format rather than as a \code{\link[stats]{dist}}-object set this to TRUE. Output is automatically given in database-format, when \code{coord} is specified. }
   \item{\dots}{ Arguments to other functions }
 }
 
@@ -99,7 +98,7 @@ Computable asymmetric indices:
     \tab Harrison et al. (1992), Koleff et al. (2003)
     \cr
     \code{cody}
-    \tab \eqn{sim = 1-\frac{a(2a+b+c}{2(a+b)(a+c)}}{sim = 1 - ((a*((2*a) + b + c))/(2 * ( a + b ) * ( a + c )))}
+    \tab \eqn{sim = 1-\frac{a(2a+b+c)}{2(a+b)(a+c)}}{sim = 1 - ((a*((2*a) + b + c))/(2 * ( a + b ) * ( a + c )))}
     \tab Cody (1993)
     \cr
     \code{williams}
@@ -135,7 +134,7 @@ Computable asymmetric indices:
     \tab Lennon et al. (2001), Koleff et al. (2003)
     \cr
     \code{rout1ledge}
-    \tab \eqn{sim = \frac{(a+b+c)^2}{(a+b+c)^2-2bc}}{sim = (((a + b + c) * Exp(2))/(((a + b + c)*Exp(2))-(2*b*c))) - 1}
+    \tab \eqn{sim = \frac{(a+b+c)^2}{(a+b+c)^2-2bc}-1}{sim = (((a + b + c) * Exp(2))/(((a + b + c)*Exp(2))-(2*b*c))) - 1}
     \tab Routledge (1977), Magurran (1988)
     \cr
     \code{rout2ledge}
@@ -215,7 +214,7 @@ Computable symmetric indices (including unshared species):
     \cr
     \code{pearson}
     \tab \eqn{sim = \frac{ad-bc}{\sqrt{(a+b)(a+c)(d+b)(d+c)}}}{sim = ((a*d) - (b*c)) / Sqrt((a + b)*(a + c)*(d + b)*(d + c))}
-    \tab Phi of Pearson, Gower & Legendre (1986)
+    \tab Phi of Pearson, Gower & Legendre (1986), Yule (1912)
     \cr
     \code{roger}
     \tab \eqn{sim = \frac{a+d}{a+2(b+c)+d}}{sim = (a + d) / (a + 2*(b + c) +d)}
@@ -223,16 +222,16 @@ Computable symmetric indices (including unshared species):
     Gower & Legendre (1986)
     \cr
     \code{baroni}
-    \tab \eqn{sim = \frac{\sqrt{ad}+c}{\sqrt{ad}+a+b+c}}{sim = ((sqrt(a*d)) + c) / ((sqrt(a*d)) + b + c + a)}
+    \tab \eqn{sim = \frac{\sqrt{ad}+a}{\sqrt{ad}+a+b+c}}{sim = ((sqrt(a*d)) + c) / ((sqrt(a*d)) + b + c + a)}
     \tab Baroni-Urbani & Buser (1976), Wolda (1981)
     \cr
     \code{dennis}
     \tab \eqn{sim = \frac{ad-bc}{\sqrt{(a+b+c+d)(a+b)(a+c)}}}{sim = ((a + d) - (b*c)) / (Sqrt((a + b + c + d) * (a + b) * (a + c)))}
-    \tab Holliday et al. (2002)
+    \tab Holliday et al. (2002), Ellis et al. (1993)
     \cr
     \code{fossum}
     \tab \eqn{sim = \frac{(a+b+c+d)\left(-\frac{a}{2}\right)^2}{(a+b)(a+c)}}{sim = ((a + b + c + d) * (-1 * ((a/2)^2))) / ((a + b) * (a + c))}
-    \tab Holliday et al. (2002)
+    \tab Holliday et al. (2002), Ellis et al. (1993)
     \cr
     \code{gower}
     \tab \eqn{sim = \frac{a-(b+c)+d}{a+b+c+d}}{sim = (a - (b + c) + d) / (a + b + c + d)}
@@ -240,7 +239,7 @@ Computable symmetric indices (including unshared species):
     \cr
     \code{legendre}
     \tab \eqn{sim = \frac{a}{a+b+c+d}}{sim = a / (a + b + c + d)}
-    \tab Gower & Legendre (1986)
+    \tab Gower & Legendre (1986), Russell/Rao in Ellis et al. (1993) 
     \cr
     \code{sokal2}
     \tab \eqn{sim = \frac{ad}{\sqrt{(a+b)(a+c)(d+b)(d+c)}}}{sim = (a*d) / Sqrt((a + b) * (a + c) * (d + b) * (d + c))}
@@ -255,7 +254,7 @@ Computable symmetric indices (including unshared species):
     \tab Sokal & Sneath (1963)
     \cr
     \code{stiles}
-    \tab \eqn{sim = \frac{(a+b+c+d) \left( |ad-bc|-\frac{a+b+c+d}{2}\right)^2 }{(a+b)(a+c)(b+d)(c+d)}}{sim = log(((a + b + c + d) * (( abs((a*d) - (b*c)) - ( (a + b + c + d) / 2))^2) / ((a + b) * (a + c) * (b + d) * (c + d))))}
+    \tab \eqn{sim = log\frac{(a+b+c+d) \left( |ad-bc|-\frac{a+b+c+d}{2}\right)^2 }{(a+b)(a+c)(b+d)(c+d)}}{sim = log(((a + b + c + d) * (( abs((a*d) - (b*c)) - ( (a + b + c + d) / 2))^2) / ((a + b) * (a + c) * (b + d) * (c + d))))}
     \tab Stiles (1946)
     \cr
     \code{yule}
@@ -263,7 +262,7 @@ Computable symmetric indices (including unshared species):
     \tab Yule & Kendall (1973)
     \cr
     \code{michael}
-    \tab \eqn{sim = \frac{4(ad-bc)}{(a+b)^2+(b+c)^2}}{sim = 4(ad-bc) / ((a+d)^2 + (b+c)^2)}
+    \tab \eqn{sim = \frac{4(ad-bc)}{(a+d)^2+(b+c)^2}}{sim = 4(ad-bc) / ((a+d)^2 + (b+c)^2)}
     \tab Michael (1920), Shi (1993)
     \cr
     \code{hamann}
@@ -275,16 +274,24 @@ Computable symmetric indices (including unshared species):
     \tab Forbes (1925), Shi (1993)
     \cr
     \code{chisquare}
-    \tab \eqn{sim = \frac{2(ad-bc)^2}{(a+b)(a+c)(b+d)(c+d)}}{sim = (N*(ad - bc)^2) / (a+b)(a+c)(b+d)(c+d)}
+    \tab \eqn{sim = \frac{(a+b+c+d)(ad-bc)^2}{(a+b)(a+c)(b+d)(c+d)}}{sim = ((a+b+c+d)*(ad - bc)^2) / (a+b)(a+c)(b+d)(c+d)}
     \tab Yule & Kendall (1950)
     \cr
     \code{peirce}
     \tab \eqn{sim = \frac{(ad-bc)}{(a+c)(b+d)}}{sim = (ad-bc) / ((a+c)(b+d))}
-    \tab Peirce (1984) in Shi (1993)
+    \tab Peirce (1884)
     \cr
     \code{eyraud}
     \tab \eqn{sim = \frac{a-(a+b)(a+c)}{(a+b)(a+c)(b+d)(c+d)}}{sim = (a - ((a+b)(a+c))) / ((a+b)(a+c)(b+d)(c+d))}
     \tab Eyraud (1936) in Shi (1993)
+    \cr
+    \code{euclidean}
+    \tab \eqn{sim = \frac{\sqrt{b+c}}{a+b+c+d}}{sim = (sqrt(b+c)) / (a+b+c+d)}
+    \tab Mean Euclidean in Ellis et al. (1993)
+    \cr
+    \code{divergence}
+    \tab \eqn{sim = \frac{\sqrt{b+c}}{sqrt{a+b+c+d}}}{sim = (sqrt(b+c)) / sqrt(a+b+c+d)}
+    \tab Ellis et al. (1993)
   }
 \code{rout2ledge} formula (Routledge, 1977; Koleff et al. 2003):
 
@@ -292,15 +299,14 @@ Computable symmetric indices (including unshared species):
 
 }
 
-\value{ 
+\value{
     If listout = FALSE a distance matrix of class \code{\link[stats]{dist}} is returned. If listout = TRUE, a \code{\link[base]{data.frame}} is returned with 7 columns giving the names of the compared plots in the first two and the calculated similarity measure in the third column. The rest of the columns give the values for \code{a, b, c,} and \code{d} (in this order). Naming of the first three columns can be changed but defaults to \code{NBX} (one of the compared plots), \code{NBY} (the other one), \code{used index} (the values of the calculated index). If \code{coord} != NULL, the following columns are given in addition and the columns \code{a:d} shift to the end of the data.frame. 
     
-    \item{distance}{ Geographical distance between compared plots }
-    \item{X}{ For plotting purposes, the x-coordinate of the virtual position of the calculated similarity value in the center between the two compared plots }
-    \item{Y}{ For plotting purposes, the y-coordinate of the virtual position of the calculated similarity value in the center between the two compared plots }
-    \item{xdist}{ Geographical distance between compared plots, on the x-axis only }
-    \item{ydist}{ Geographical distance between compared plots, on the y-axis only }
-  
+    \item{distance }{ Geographical distance between compared plots }
+    \item{X }{ For plotting purposes, the x-coordinate of the virtual position of the calculated similarity value in the center between the two compared plots }
+    \item{Y }{ For plotting purposes, the y-coordinate of the virtual position of the calculated similarity value in the center between the two compared plots }
+    \item{xdist }{ Geographical distance between compared plots, on the x-axis only }
+    \item{ydist }{ Geographical distance between compared plots, on the y-axis only }
 }
 
 \references{
@@ -315,6 +321,8 @@ Computable symmetric indices (including unshared species):
     Colwell, R. K. & Coddington, J. A. (1994) Estimating terrestrial biodiversity through extrapolation. \emph{Philosophical Transactions of the Royal Society of London Series B-Biological Sciences} \bold{345}: 101-118.
 
     Dice, L. R. (1945) Measures of the amount of ecological association between species. \emph{Ecology} \bold{26}: 297-302.
+    
+    Ellis, D., Furner-Hines, J., Willett, P. (1993) Measuring the degree of similarity between objects in text retrieval systems. \emph{Perspectives in Information Management} \bold{3}(2): 128-149
 
     Fager, E. W. (1957) Determination and analysis of recurrent groups. \emph{Ecology} \bold{38}: 586-595.
 
@@ -360,8 +368,11 @@ Computable symmetric indices (including unshared species):
 
     Magurran, A. E. (1988) \emph{Ecological Diversity and its Measurement}. Chapman & Hall, London.
 
-    Mountford, M. D. (1962) An index of similarity and its application to classification problems. - In: Murphy, P. W. (ed.) \emph{Progress in Soil Zoology}, pp. 43-50, Butterworths, 
-Oosting, H. J. (1956) \emph{The study of plant communities: an introduction to plant ecolog}. W. H. Freeman, San Francisco.
+    Mountford, M. D. (1962) An index of similarity and its application to classification problems. - In: Murphy, P. W. (ed.) \emph{Progress in Soil Zoology}, pp. 43-50, Butterworths
+    
+    Ochiai, A. (1957) Zoogeographical studies on the soleoid fishes found in Japan and its neighbouring regions. \emph{Bulletin of the Japanese Society of Fisheries Science} \bold{22}(9): pp. 526-530
+    
+    Oosting, H. J. (1956) \emph{The study of plant communities: an introduction to plant ecolog}. W. H. Freeman, San Francisco.
 
     Rogers, D. J. & Tanimoto, T. T. (1960) A computer program for classifying plants. \emph{Science} \bold{132}: 1115-1118.
 
@@ -384,6 +395,8 @@ Oosting, H. J. (1956) \emph{The study of plant communities: an introduction to p
     Sorgenfrei, T. (1959) Molluscan assemblages from the marine middle Miocene of South Jutland and their environments. \emph{Danmark Geologiske Undersøgelse. Serie 2} \bold{79}: 403-408.
 
     Southwood, T. S. (1978) \emph{Ecological Methods}. Chapman and Hall, London.
+    
+    Stiles (1961) The association factor in information retrieval. \emph{Journal of the Association for Computing Machinery.} \bold{8} 271-279
 
     Weiher, E. & Boylen, C. W. (1994) Patterns and prediction of alpha and beta diversity of aquatic plants in Adirondack (New York) lakes. \emph{Canadian Journal of Botany-Revue Canadienne De Botanique} \bold{72}: 1797-1804.
 
@@ -398,6 +411,8 @@ Oosting, H. J. (1956) \emph{The study of plant communities: an introduction to p
     Wolda, H. (1981) Similarity indices, sample size and diversity. \emph{Oecologia} \bold{50}: 296-302.
     
     Yule, G. U. & Kendall, M. G. (1973) \emph{An introduction to the theory of statistics}. Griffin, London.
+    
+    Yule, G. U. (1912) \emph{On the methods of measuring association between two attributes}. Journal of the Royal Statistical Society \bold{75}(6): 579-642
 }
   
 \author{ Gerald Jurasinski \email{terhorab@mac.com} }

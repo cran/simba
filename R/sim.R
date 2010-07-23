@@ -3,7 +3,7 @@ function(x, coord=NULL, method="soer", dn=NULL, normalize = FALSE, listin = FALS
 {	
 	if (!is.na(pmatch(method, "jaccard"))) 
         method <- "jaccard"
-	METHODS <- c("soerensen", "jaccard", "ochiai", "mountford", "whittaker", "lande", "wilsonshmida", "cocogaston", "magurran", "harrison", "cody", "williams", "williams2", "harte", "simpson", "lennon", "weiher", "ruggiero", "lennon2", "rout1ledge", "rout2ledge", "rout3ledge", "sokal1", "dice", "kulcz1insky", "kulcz2insky", "mcconnagh", "manhattan", "simplematching", "margaleff", "pearson", "roger", "baroni", "dennis", "fossum", "gower", "legendre", "sokal2", "sokal3", "sokal4", "stiles", "yule", "michael", "hamann", "forbes", "chisquare", "peirce", "eyraud", "simpson2", "legendre2", "fager", "maarel", "lamont", "johnson", "sorgenfrei", "johnson2")
+	METHODS <- c("soerensen", "jaccard", "ochiai", "mountford", "whittaker", "lande", "wilsonshmida", "cocogaston", "magurran", "harrison", "cody", "williams", "williams2", "harte", "simpson", "lennon", "weiher", "ruggiero", "lennon2", "rout1ledge", "rout2ledge", "rout3ledge", "sokal1", "dice", "kulcz1insky", "kulcz2insky", "mcconnagh", "manhattan", "simplematching", "margaleff", "pearson", "roger", "baroni", "dennis", "fossum", "gower", "legendre", "sokal2", "sokal3", "sokal4", "stiles", "yule", "michael", "hamann", "forbes", "chisquare", "peirce", "eyraud", "simpson2", "legendre2", "fager", "maarel", "lamont", "johnson", "sorgenfrei", "johnson2", "euclidean", "divergence")
 	method <- pmatch(method, METHODS)
 	if (is.na(method)){
 		stop("invalid similarity method")
@@ -15,7 +15,7 @@ function(x, coord=NULL, method="soer", dn=NULL, normalize = FALSE, listin = FALS
 		x <- mama(x)
 		x <- as.matrix(x)
 		}
-	x <- ifelse(x>0, 1, 0)
+	x <- x > 0
 	df <- as.matrix(x)
 	zeina <- row.names(df)
     anz <- nrow(df)
@@ -68,7 +68,7 @@ function(x, coord=NULL, method="soer", dn=NULL, normalize = FALSE, listin = FALS
         dis <- pmin(b,c) / (a+b+c) 
     }
     else if (method == 13) {
-        dis <- ((b*c)+1) / ((((a+b+c) * exp(2)) - (a+b+c)) / 2)
+        dis <- ((b*c)+1) / ((((a+b+c)^2) - (a+b+c)) / 2)
     }
     else if (method == 14) {
         dis <- 1-((2*a) / ((2*a) + b + c)) 
@@ -89,7 +89,7 @@ function(x, coord=NULL, method="soer", dn=NULL, normalize = FALSE, listin = FALS
         dis <- 1 - (log((2*a + b + c)/(a + b + c)) / log(2))
     }
     else if (method == 20) {
-        dis <- (((a+b+c) * exp(2))/(((a+b+c)*exp(2))-(2*b*c)))-1
+        dis <- (((a+b+c)^2)/(((a+b+c)^2)-(2*b*c)))-1
     }
     else if (method == 21) {
         dis <- log(2*a+b+c)-((1/(2*a+b+c))*2*a*log(2))-((1/(2*a+b+c))*((a+b)*log(a+b)+(a+c)*log(a+c))) 
@@ -129,10 +129,10 @@ function(x, coord=NULL, method="soer", dn=NULL, normalize = FALSE, listin = FALS
         dis <- (a + d) / (a + 2*(b + c) +d)
     }
     else if (method == 33) {
-        dis <- ((sqrt(a*d))+c) / ((sqrt(a*d))+b+c+a)
+        dis <- ((sqrt(a*d))+a) / ((sqrt(a*d))+b+c+a)
     }
     else if (method == 34) {
-        dis <- ((a+d) - (b*c)) / (sqrt((a+b+c+d)*(a+b)*(a+c)))
+        dis <- ((a*d) - (b*c)) / (sqrt((a+b+c+d)*(a+b)*(a+c)))
     }
     else if (method == 35) {
         dis <- ((a+b+c+d) * (-1 * ((a/2)^2))) / ((a+b)*(a+c))
@@ -144,7 +144,7 @@ function(x, coord=NULL, method="soer", dn=NULL, normalize = FALSE, listin = FALS
         dis <- a / (a+b+c+d)
     }
     else if (method == 38) {
-        dis <- a / (a*d) / sqrt((a+b)*(a + c)*(d + b)*(d + c))
+        dis <- (a*d) / sqrt((a+b)*(a + c)*(d + b)*(d + c))
     }
     else if (method == 39) {
         dis <- ((2*a)+(2*d)) / (a+d+(a+b+c+d))
@@ -156,7 +156,7 @@ function(x, coord=NULL, method="soer", dn=NULL, normalize = FALSE, listin = FALS
         dis <- log(((a+b+c+d) * (( abs((a*d)-(b*c)) - ( (a+b+c+d) / 2))^2) / ((a+b)*(a+c) *(b+d)*(c+d))))
     }
     else if (method == 42) {
-        dis <- ((a*d)-(b*c)) / ((a+d)+(b*c))
+        dis <- ((a*d)-(b*c)) / ((a*d)+(b*c))
     }
     else if (method == 43) {
         dis <- (4*((a*d) - (b*c))) / ((a+d)^2 + (b+c)^2)
@@ -200,6 +200,12 @@ function(x, coord=NULL, method="soer", dn=NULL, normalize = FALSE, listin = FALS
     else if (method == 56) {
         dis <- (a/(a+b)) + (a/(a+c))
     }
+    else if (method == 57) {
+        dis <- (sqrt(b + c) / (a+b+c+d))
+    }
+    else if (method == 58) {
+        dis <- (sqrt(b + c) / sqrt(a+b+c+d))
+    }
 	dis <- as.dist(dis)
 	attr(dis, "Size") <- anz
     attr(dis, "Labels") <- zeina
@@ -211,7 +217,7 @@ function(x, coord=NULL, method="soer", dn=NULL, normalize = FALSE, listin = FALS
         dis$a <- a[row(a) > col(a)]
 	    dis$b <- b[row(b) > col(b)]
 	    dis$c <- c[row(c) > col(c)]
-	    dis$d <- c[row(d) > col(d)]
+	    dis$d <- d[row(d) > col(d)]
     	}
     if (!is.null(coord)){
 	   xydist <- liste(dist(coord), entry="distance")
@@ -226,7 +232,7 @@ function(x, coord=NULL, method="soer", dn=NULL, normalize = FALSE, listin = FALS
 	   dis$a <- a[row(a) > col(a)]
 	   dis$b <- b[row(b) > col(b)]
 	   dis$c <- c[row(c) > col(c)]
-	   dis$d <- c[row(d) > col(d)]
+	   dis$d <- d[row(d) > col(d)]
 	   if (!is.null(dn)) {
 	       if(length(dn)==1){
 	           dis <- dis[(dis$distance <= dn), ]

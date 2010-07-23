@@ -18,7 +18,7 @@ mama(dat)
 }
 
 \details{
-  You could reach the same result with \code{\link[stats]{reshape}}. I was just always quite confused with this. That's why i decided to do this little wrapper for convenience. It needs quite a while to run though, but this is due to \code{\link[base]{reshape}}.
+  You could reach the same result with \code{\link[stats]{reshape}}. I was just always quite confused with this. That's why i decided to do this little wrapper for convenience. It needs quite a while to run though, but this is due to \code{\link[stats]{reshape}}.
 }
 
 \value{

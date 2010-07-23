@@ -1,5 +1,8 @@
 "aslopect" <-
-function(asp, slo, names=rownames(asp), listout=FALSE) {
+function(asp, slo, names=rownames(asp), fc=FALSE, listout=FALSE) {
+    if(fc) {
+    	asp[asp > 180] <- -(180 - (asp[asp > 180] - 180))
+    	}
     asp[is.na(asp)] <- 0
     slo <- 90-slo
     anz <- length(asp)

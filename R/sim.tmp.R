@@ -34,7 +34,7 @@ function(x, y, method="soer", normalize = FALSE, adjust=TRUE, ...) {
         names(df.ges) <- c(1:ncol(df.ges))
         df1 <- df.ges[,-grep(".yyy", spc.nms)]
         df2 <- df.ges[,-grep(".xxx", spc.nms)]
-#   before re-renaming the species from the each other matrix have to be filled in an assigned with zeros
+#   before re-renaming, the species from the each other matrix have to be filled in and assigned with zeros
         only1 <- data.frame((sapply(nms1, grep, spc.nms)))
         only1.slct <- only1[1, apply(only1, 2, diff) == 0]
         only2 <- data.frame((sapply(nms2, grep, spc.nms)))

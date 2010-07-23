@@ -6,7 +6,7 @@
 }
 
 \usage{
-plot.mrpp(x, y, ...)
+\method{plot}{mrpp}(x, y, \dots)
 }
 
 \arguments{

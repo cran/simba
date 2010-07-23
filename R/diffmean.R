@@ -31,7 +31,7 @@ function (x, y, permutations = 1000) {
 		signif <- (1+sum(diffsxy <= diff))/(permutations+1)
 	}
 	sigF <- sum(F <= Fperm)/permutations
-    out <- list(call = match.call(), diff = diff, meanom=meanom,     mean.x=meanx, mean.y=meany, F = F, sig = signif, sigF = sigF, bootsM = diffsxy, bootsF = Fperm, permutations = permutations)
+    out <- list(call = match.call(), diff = diff, meanom=meanom,     mean.x=meanx, mean.y=meany, Fval = F, sig = signif, sigF = sigF, bootsM = diffsxy, bootsF = Fperm, permutations = permutations)
     class(out) <- "dmn"
     out
 }

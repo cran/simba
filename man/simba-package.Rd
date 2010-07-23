@@ -11,11 +11,11 @@
 \tabular{ll}{
 Package: \tab simba\cr
 Type: \tab Package\cr
-Version: \tab 0.2-5\cr
-Date: \tab 2007-08-16\cr
+Version: \tab 0.3-1\cr
+Date: \tab 2010-07-08\cr
 License: \tab GPL version 2\cr
 }
-The functions in this package can be used to calculate similarities between species records (in binary format). Functions related to the correlation of similarity matrices and some other useful functions for the analysis of spatial patterns and there change in time are included as well.
+The functions in this package can be used to calculate similarities between species records (in binary format). Functions related to the correlation of similarity matrices and some other useful functions for the analysis of spatial patterns and their change in time are included as well.
 }
 
 \author{Gerald Jurasinski \email{terhorab@mac.com}, with some help by Vroni Retzer \email{vroni.retzer@uni-bayreuth.de}
@@ -44,13 +44,13 @@ The functions in this package can be used to calculate similarities between spec
 
   Wolda, H. (1981). Similarity indices, sample size and
   diversity. \emph{Oecologia} 50, 296--302.
-  }
 }
+
 \keyword{ package }
 \seealso{
 	\code{\link[vegan]{vegdist}}, \code{\link[ade4]{dist.binary}}, 
 	\code{\link[labdsv]{dsvdis}}, \code{\link[stats]{dist}},
-	\code{\link[stats]{reshape}}, \code{\link[base]{cor.test}}
+	\code{\link[stats]{reshape}}, \code{\link[stats]{cor.test}}
 }
 \examples{
 ##see functions for examples

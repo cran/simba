@@ -1,5 +1,45 @@
 SIMBA VERSIONS
 
+Version 0.3-1
+
+	* rin, mps, mpd, mps.ave, mps.f, sos: A bunch of new functions
+	for the calculation of multiple plot similarity coefficients with
+	rin a wrapper function that allows for the application of all
+	other function in a moving window across an array of plots. 
+	
+	* The older functions het2nbs, sim.het, sim.pat, sim.rel, sim.relt, 
+	simn, sima that provided parts of that functionality in a different 
+	way, have been removed from the package.
+	
+	* symbol.size, new helper function. enables to easily create 
+	something like bubble plots through all plot.xy methods
+	
+	* auc, new function for integrating the area under a curve (line)
+	
+	* bb2num, new function for translation of Braun-Blanquet scale 
+	abundance values to cover percentages and vice versa.
+	
+	* simbadocs, new function to view some documentation details
+	to the package
+	
+	* ads.fbg, new function to maximize the relation with the
+	prescribed gradient and the resulting gradient when creating 
+	an artificial species matrix with either ads, ads.hot or makead.
+
+	* fixed a bug in mama that caused an error if input was not well defined.
+	The function is now more robust. Updated documentation accordingly.
+	
+	* fixed a bug in liste that has caused an error if the input
+	data.frame object had no rownames.
+	
+	* fixed a bug in diffslope and expanded the function. Now also the 
+	difference in intercept can be calculated (function diffic). 
+	(take care with resc.y!!) accordingly a print function has 
+	been added.
+	
+	* New documentations for the new functions as well as updates
+	and bug fixes to many of the existent documentations
+
 Version 0.2-5
 	
 	* sim.yo, new function to create and calculate your own 

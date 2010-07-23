@@ -29,7 +29,7 @@ function(x, coord=NULL, method="(2*a)/((2*a) + b + c)", dn=NULL, normalize = FAL
     attr(dis, "call") <- match.call()
     class(dis) <- "dist"
     if (listout) {
-        dis <- liste(dis, entry=METHODS[method])
+        dis <- liste(dis, entry=method)
         dis$a <- a[row(a) > col(a)]
 	    dis$b <- b[row(b) > col(b)]
 	    dis$c <- c[row(c) > col(c)]
@@ -38,7 +38,7 @@ function(x, coord=NULL, method="(2*a)/((2*a) + b + c)", dn=NULL, normalize = FAL
     if (!is.null(coord)){
 	   xydist <- liste(dist(coord), entry="distance")
 	   dis <- cbind(xydist, as.vector(dis))
-	   names(dis)[4] <- METHODS[method]
+	   names(dis)[4] <- method
 	   X <- (outer(coord[,1], coord[,1], FUN="+"))*0.5
 	   Y <- (outer(coord[,2], coord[,2], FUN="+"))*0.5	   
 	   dis$X <- X[row(X) > col(X)]
