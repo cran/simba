@@ -214,7 +214,8 @@ Computable symmetric indices (including unshared species):
     \cr
     \code{pearson}
     \tab \eqn{sim = \frac{ad-bc}{\sqrt{(a+b)(a+c)(d+b)(d+c)}}}{sim = ((a*d) - (b*c)) / Sqrt((a + b)*(a + c)*(d + b)*(d + c))}
-    \tab Phi of Pearson, Gower & Legendre (1986), Yule (1912)
+    \tab Phi of Pearson, Gower & Legendre (1986), 
+    Yule (1912)
     \cr
     \code{roger}
     \tab \eqn{sim = \frac{a+d}{a+2(b+c)+d}}{sim = (a + d) / (a + 2*(b + c) +d)}
@@ -415,7 +416,7 @@ Computable symmetric indices (including unshared species):
     Yule, G. U. (1912) \emph{On the methods of measuring association between two attributes}. Journal of the Royal Statistical Society \bold{75}(6): 579-642
 }
   
-\author{ Gerald Jurasinski \email{terhorab@mac.com} }
+\author{ Gerald Jurasinski \email{gerald.jurasinski@uni-rostock.de} }
 
 \note{ In general, concepts of data-handling are taken from \code{\link[vegan]{vegdist}} and the calculation of \code{a}, \code{b}, \code{c} and \code{d} is taken from \code{\link[ade4]{dist.binary}}. Thanks to Jari Oksanen for his \code{vegan} package. The indices were collected from the literature and are applicable in different fields of research.
 }

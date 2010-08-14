@@ -83,7 +83,8 @@ soil.dist <- 1-vegdist(abis.env[,c(6,27:28)])
 ##calculate the similarity (Bray-Curtis) between the plots 
 ##regarding soil parameters
 
-coord.dist <- dist(abis.env[,1:2]) ##calculate geographical distance between plots
+##calculate geographical distance between plots
+coord.dist <- dist(abis.env[,1:2]) 
 
 ##transform all distance matrices into list format:
 struc.dist.ls <- liste(pert.dist, entry="BC.struc")

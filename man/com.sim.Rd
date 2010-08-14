@@ -38,7 +38,7 @@ com.sim(veg, subs, simil = "soerensen", binary = TRUE,
   \item{diff }{ Difference in average distance/similarity for this comparison }
   \item{sig }{ Significance of the difference in mean of the similarities. }
   \item{sigs }{ Significance flag for the comparison ("*" means significant differences, "ns" means that the differences are not significant). }
-  \item{F }{ F-value for the Comparison. }
+  \item{Fval }{ F-value for the Comparison. }
   \item{sigF }{ Is F significant? }
   \item{sigsF }{ Significance flag for F. }
 

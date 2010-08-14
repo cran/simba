@@ -1,5 +1,5 @@
 "simbadocs" <- 
-function (doc = c("NEWS", "ChangeLog", "mps-coefficients.pdf")) 
+function (doc = c("NEWS", "ChangeLog", "mps-coefficients.pdf", "simba_0.3-2_man.pdf")) 
 {
     doc <- match.arg(doc)
     if (length(grep(".pdf", doc)) > 0) {

@@ -44,7 +44,8 @@ nc.acc=FALSE, ...)
     Walther, G.-R., Beißner, S. & Burga, C. A. 2005. Trends in the upward shift of alpine plants. \emph{Journal of Vegetation Science} \bold{16}: 541-548.
 }
 
-\author{ Gerald Jurasinski \email{terhorab@mac.com} \url{http://homepage.mac.com/terhorab/gerald/} }
+\author{ Gerald Jurasinski \email{gerald.jurasinski@uni-rostock.de}
+}
 
 \seealso{ to calculate similarity based on plant species occurrence between time steps see \code{\link{sim.tmp}} }
 

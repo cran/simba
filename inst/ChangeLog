@@ -1,5 +1,17 @@
 SIMBA VERSIONS
 
+Version 0.3-2
+
+	* Added a neighbor definition possibility to rin. Now, also a number
+	of k nearest neighbors can be defined.
+	
+	* Fixed some issues with many of the documentations especially
+	for pdf.
+	
+	* Fixed a missing documentation: the data set bernina was undocumented.
+	
+	* Now gives version number when loading.
+
 Version 0.3-1
 
 	* rin, mps, mpd, mps.ave, mps.f, sos: A bunch of new functions

@@ -43,18 +43,25 @@ function(veg, coord, dn, func, test=TRUE, permutations=100, permute=2, sfno=TRUE
     rownames(coord) <- rownames(veg)
     plots <- rownames(veg)
     dist.all <- dist(coord[,1:2])
-    if (max(dist.all) < min(dn)){
-        stop("Are you sure that the neighbor definition is correct?")
-    }
-    if(length(dn)==1){
-        dist.nbs <- ifelse(as.matrix(dist.all) <= dn, 1, 0)
-        dimnames(dist.nbs) <- list(plots, plots)
+    if(is.character(dn)){
+    	dist.nbs <- apply(as.matrix(dist.all), 2, rank, ties.method="random")
+    	dist.nbs <- ifelse(dist.nbs <= as.numeric(dn), 1, 0)
     }
     else{
-        dist.nbs <- ifelse(((as.matrix(dist.all) == 0) | ((as.matrix(dist.all) >= min(dn)) & (as.matrix(dist.all) <= max(dn)))), 1, 0)
-        dimnames(dist.nbs) <- list(plots, plots)
+    	if(max(dist.all) < min(dn)){
+        	stop("Are you sure that the neighbor definition is correct?")
+    	}
+    	if(length(dn)==1){
+        	dist.nbs <- ifelse(as.matrix(dist.all) <= dn, 1, 0)
+        	dimnames(dist.nbs) <- list(plots, plots)
+    	}
+    	else{
+        	dist.nbs <- ifelse(((as.matrix(dist.all) == 0) | ((as.matrix(dist.all) >= min(dn)) & (as.matrix(dist.all) <= max(dn)))), 1, 0)
+        	dimnames(dist.nbs) <- list(plots, plots)
+    	}
     }
     # which number of plots in a neighborhood is valid (depends on resemblance coefficient)
+    # methods that treat the focal plot special need more plots in the neighborhood
 	what.valid <- grepl("foc=foc", func) + 1
 	#calculate the number of plots in each neighborhood
    	n.plots <- rowSums(dist.nbs)
@@ -122,6 +129,8 @@ function(veg, coord, dn, func, test=TRUE, permutations=100, permute=2, sfno=TRUE
 		sig <- ifelse(abs(sim.test) < p.l, "*", "ns")
 		sig.prefix <- ifelse(sim.test < 0, "-", "+")
 		sims <- cbind(sim.start, data.frame(p.val = sim.test, sig = sig, sig.sign = sig.prefix))
+		## achtung, nur für testzwecke.
+		## sims <- list(sims, sim.perms)
 	}
 	else{
 		sims <- sim.start

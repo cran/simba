@@ -16,10 +16,10 @@ Vegetation and related data from field sites in a Tundra Ecosystem in Northern S
 
 \format{
   \itemize{
-    \item{abis.env}{contains some environmental variables from the Abisko field sites. These are:
+    \item{abis.env}{ contains some environmental variables from the Abisko field sites. These are:
     
     \itemize{    
-    \item{X }{ Numeric: The x-coordinates of the field sites (utm). The sites are arranged in a regular equidistant grid. Each site is a hexagon plot with 5m radius. }
+    \item{\code{X} }{ Numeric: The x-coordinates of the field sites (utm). The sites are arranged in a regular equidistant grid. Each site is a hexagon plot with 5m radius. }
     \item{Y }{ Numeric: The y-coordinates of the geographic position of the field sites. }
     \item{alt }{ Integer: Height a.s.l. of the field sites. }
     \item{aspect }{ Exposition of the sites. In degree from 0 to 180/-180. Counts negative in westward direction and positive in eastward direction. }
@@ -55,7 +55,7 @@ Vegetation and related data from field sites in a Tundra Ecosystem in Northern S
 }
 
 \source{
-  Jurasinski, G. and Retzer, V. (in. prep.) Measuring multi-plot similarity with presence-absence data.
+  Jurasinski G, Jentsch A, Retzer V, Beierkuhnlein C (submitted) Assessing gradients in species composition with multiple plot similarity coefficients. \emph{Ecography}
   
   Rettenmaier, N. 2004. Räumliche Muster der Biodiversität in der skandinavischen Tundra - Diploma thesis (unpublished), Department of Biogeography, University of Bayreuth, pp. 96.
 }

@@ -35,7 +35,7 @@ sim.tmp(x, y, method = "soer", normalize = FALSE, adjust = TRUE, ...)
 
 \references{ See references in \code{\link{sim}} }
 
-\author{ Gerald Jurasinski \email{terhorab@mac.com} }
+\author{ Gerald Jurasinski \email{gerald.jurasinski@uni-rostock.de} }
 
 \seealso{ See Also as \code{\link{sim}} (where you can find a much more elaborate see also section as well). }
 

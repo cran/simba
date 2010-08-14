@@ -12,7 +12,10 @@ dist.tmp(x, y, method = "euclidean", margin = 1, adjust=TRUE)
 \arguments{
   \item{x}{ \code{data.frame} with numeric columns giving the data at time one }
   \item{y}{ \code{data.frame} with numeric columns giving the data at time two }
-  \item{method}{ Which distance measure should be employed? The following measurees are available: \code{"manhattan"}, \code{"euclidean"}, \code{"bray"}, \code{"canberra"}, \code{"kulczynski"}, \code{"gower"}, \code{"jaccard"}. See details.}
+  \item{method}{ Which distance measure should be employed? The following measurees 
+  are available: \code{"manhattan"}, \code{"euclidean"}, \code{"bray"}, 
+  \code{"canberra"}, \code{"kulczynski"}, \code{"gower"}, \code{"jaccard"}. 
+  See details.}
   \item{margin}{ Shall the distance between the instances (rows, \code{margin} = 2), or the distance between the variables (columns, \code{margin} = 1) be calculated? }
   \item{adjust}{ The default \code{adjust} = TRUE takes care of your input data. However, instances and variable names have to be unique, as the matching relies on these names. If your data meets this requirement the function automatically detects which instances and variables can be found in both data-sets and calculates the distance based on these data. }
 }
@@ -29,7 +32,7 @@ dist.tmp(x, y, method = "euclidean", margin = 1, adjust=TRUE)
 
 \references{ See references in \code{\link[vegan]{vegdist}} }
 
-\author{ Gerald Jurasinski \email{terhorab@mac.com} }
+\author{ Gerald Jurasinski \email{gerald.jurasinski@uni-rostock.de} }
 
 \seealso{ \code{\link[vegan]{vegdist}}, \code{\link[stats]{dist}}, \code{\link[simba]{sim}} }
 

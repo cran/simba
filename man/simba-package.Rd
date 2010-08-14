@@ -12,13 +12,14 @@
 Package: \tab simba\cr
 Type: \tab Package\cr
 Version: \tab 0.3-1\cr
-Date: \tab 2010-07-08\cr
+Date: \tab 2010-07-25\cr
 License: \tab GPL version 2\cr
 }
 The functions in this package can be used to calculate similarities between species records (in binary format). Functions related to the correlation of similarity matrices and some other useful functions for the analysis of spatial patterns and their change in time are included as well.
 }
 
-\author{Gerald Jurasinski \email{terhorab@mac.com}, with some help by Vroni Retzer \email{vroni.retzer@uni-bayreuth.de}
+\author{Gerald Jurasinski \email{gerald.jurasinski@uni-rostock.de}, with some contributions 
+by Vroni Retzer \email{vroni.retzer@gmx.de}
 }
 
 \references{

@@ -68,7 +68,8 @@ abis.aslopect <- with(abis.env, aslopect(aspect, slope))
 abis.pert <- dist(abis.env[,19-25])
 
 # put distances according to environment together
-abis.envdist <- data.frame(dist = c(abis.geodist), aslopect = c(abis.aslopect), pert = c(abis.pert))
+abis.envdist <- data.frame(dist = c(abis.geodist), 
+aslopect = c(abis.aslopect), pert = c(abis.pert))
 
 # no mantel correlation between those constructed
 # variables and the similarity in species composition

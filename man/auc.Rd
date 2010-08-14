@@ -30,7 +30,8 @@ Gerald Jurasinski, \email{gerald.jurasinski@uni-rostock.de}
 ## Construct a data set (Imagine 2-hourly ghg emission data
 ## (methane) measured during a day).
 ## The emission vector (data in mg CH4 / m2*h) as a time series.
-ghg <- ts(c(12.3, 14.7, 17.3, 13.2, 8.5, 7.7, 6.4, 3.2, 19.8, 22.3, 24.7, 15.6, 17.4), start=0, end=24, frequency=0.5)
+ghg <- ts(c(12.3, 14.7, 17.3, 13.2, 8.5, 7.7, 6.4, 3.2, 19.8, 
+22.3, 24.7, 15.6, 17.4), start=0, end=24, frequency=0.5)
 ## Have a look at the emission development.
 plot(ghg)
 ## Calculate what has been emitted that day
@@ -39,7 +40,7 @@ plot(ghg)
 auc(time(ghg), ghg)
 
 ## The effect of below.zero:
-## Shift data, so that we have negativ emissions (immissions)
+## Shift data, so that we have negative emissions (immissions)
 ghg <- ghg-10
 ## See the difference
 plot(ghg)

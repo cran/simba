@@ -8,8 +8,11 @@
 }
 
 \usage{
-diffmich(x1, y1, x2, y2, permutations = 1000, a=3, b=0.5, trace=FALSE, ...)
+diffmich(x1, y1, x2, y2, permutations = 1000, a=3, b=0.5, 
+	trace=FALSE, ...)
+
 fitmich(x, y, a=3, b=0.5)
+
 \method{plot}{diffmich}(x, y, which=3, two=2, ...)
 }
 

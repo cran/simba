@@ -9,7 +9,8 @@ The function allows for an easy transformation of Braun-Blanquet (or any other p
 }
 
 \usage{
-bb2num(dat, from = c("r", "+", "1", "2", "3", "4", "5"), to = c(0.1, 1, 5, 15, 37.5, 62.5, 87.5))
+bb2num(dat, from = c("r", "+", "1", "2", "3", "4", "5"), 
+to = c(0.1, 1, 5, 15, 37.5, 62.5, 87.5))
 }
 
 \arguments{

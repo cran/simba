@@ -14,13 +14,15 @@ mpd(x, method="simpson", all=FALSE)
 
 mps(x, method="whittaker", all=FALSE)
 
-mps.ave(x, method="soerensen", all=FALSE, foc=NULL, what="mean", ...)
+mps.ave(x, method="soerensen", all=FALSE, foc=NULL, 
+	what="mean", ...)
 
 mps.f(x, foc, d.inc=FALSE, preso=FALSE)
 
 sos(x, method="mean", foc=NULL, normal.sp=TRUE, normal.pl=TRUE)
 
-rin(veg, coord, dn, func, test = TRUE, permutations = 100, permute = 2, sfno = TRUE, p.level = 0.05, ...)
+rin(veg, coord, dn, func, test = TRUE, permutations = 100, 
+	permute = 2, sfno = TRUE, p.level = 0.05, ...)
 }
 
 \arguments{
@@ -35,7 +37,7 @@ rin(veg, coord, dn, func, test = TRUE, permutations = 100, permute = 2, sfno = T
   \item{normal.pl }{ In case of \code{sos} (\strong{s}um \strong{o}f \strong{s}quares of species matrix, which is a measure of beta-diversity (Legendre et al. 2005)): Shall the result be normalized with respect to the number of plots. }
   \item{veg}{ Species composition data, a matrix-like object that is ought to be recorded in a regular array or a similar structure and that shall be divided into neighborhoods with a moving window so that each plot becomes the focal plot with a certain neighborhood of plots around for which the multiple plot resemblance measures are then calculated. }
   \item{coord}{ Spatial coordinates of the field plots where the data in veg comes from. The function expects a \code{data.frame} with two columns with the first column giving the x (easting) coordinate and the second giving the y (northing) coordinate in UTM or the like. These coordinates are used to calculate the neighborhoods within a moving window approach. }
-  \item{dn}{ Distance to neighbors or neighbor definition. A positive numeric or a two value vector (also positive numeric). In the first case it gives the distance from each sampling unit in m until which other sampling units should be seen as neighbours. In the second the two values define a ring around each plot. Plots that fall into the ring are considered as neighbors. See details. }
+  \item{dn}{ Distance to neighbors or neighbor definition. A positive numeric, a two value vector (also positive numeric), or a character string. In the first case it gives the distance from each sampling unit in m until which other sampling units should be seen as neighbours. In the second the two values define a ring around each plot. Plots that fall into the ring are considered as neighbors. In the third case, the character string defines the number of k nearest neighbors that should be regarded as the neighborhood. This being a character just triggers a different way to calculate the neighbors. See details. }
   \item{func}{ A character string that defines the formula which shall be applied to calculate a multiple plot resemblance measure for all possible neighborhoods within an array. For instance \code{"mpd(x)"} to compute the Simpson multiple plot dissimilarity coefficient sensu Baselga (2010). See details. }
   \item{test}{ Logical. Shall the significance of the calculated values of multiple plot resemblance be tested regarding its deviation from random expectations. Defaults to \code{TRUE}. See details. }
   \item{permutations}{ The number of permutations run for testing the significance. Defaults to 100. And it is already slow. So test before you give much higher number of runs here. }
@@ -55,21 +57,29 @@ Several multiple plot similarity indices have been presented that cure some of t
 
 \code{mps} calculates \strong{m}ultiple \strong{p}lot (dis-)\strong{s}imilarities that are either derived from other approaches to beta-diversity calculation (Whittaker's beta, additive partitioning), or have been around for quite a while (Harrison multiple plot dissimilarity, Harrison multiple plot turnover, Williams multiple plot turnover). None of these considers the actual species composition on each of the compared plots. The following methods are available (n = number of plots, S = number of species, \eqn{\gamma = gamma diversity (S_n)}, \eqn{\alpha = alpha diversity (S_i)}):
 
-\tabular{ll}{ 
-	\code{whittaker} \tab Calculates Whittaker's beta (multiplicative partitioning, Whittaker 1960) \eqn{\beta = \gamma/mean(\alpha)}. \cr
-	\code{inverse.whittaker} \tab Inverse Whittaker's beta (multiplicative partitioning). Scales between 1/n (when the considered plots do not share any species at all) and 1 (when all plots share the same species) \cr
-	\code{additive} \tab Additive partitioning. Following Lande (1996) and keeping it with \eqn{\alpha} = species number, the additive beta-component of the neighborhood (in the \code{rin}-case or the complete dataset in the \code{mps}-case) is calculated. \cr
-	\code{harrison} \tab Harrison (1992) multiple plot dissimilarity. A transformation of Whittaker's beta to be bounded between 0 and 1 (\eqn{\frac{\beta_W - 1}{n-1}}{(\beta_W-1)/(n-1)}. \cr
-	\code{diserud} \tab Diserud & Ødegaard (2007) derived this from the pairwise Sørensen similarity measure. However, as Baselga highlights, this can also be derived from Whittaker's beta \eqn{\frac{n - \beta_W }{n-1}}{(n - \beta_W)/(n-1)} and is basically the same as Harrisons multiple plot dissimilarity but expressed as a similarity. \cr
-	\code{harrison.turnover} \tab \eqn{\frac{\frac{\gamma}{max(\alpha)}-1}{n-1}}{((\gamma/max(\alpha))-1)/(n-1)} (Harrison et al. 1992)\cr
-	\code{williams} \tab \eqn{1 - \frac{max(\alpha)}{\gamma}}{1 - max(\alpha)/\gamma} (Williams 1996) \cr}
+\code{whittaker}: Calculates Whittaker's beta (multiplicative partitioning, Whittaker 1960) \eqn{\beta = \gamma/mean(\alpha)}.
+
+\code{inverse.whittaker}: Inverse Whittaker's beta (multiplicative partitioning). Scales between 1/n (when the considered plots do not share any species at all) and 1 (when all plots share the same species)
+
+\code{additive}: Additive partitioning. Following Lande (1996) and keeping it with \eqn{\alpha} = species number, the additive beta-component of the neighborhood (in the \code{rin}-case or the complete dataset in the \code{mps}-case) is calculated.
+
+\code{harrison}: Harrison (1992) multiple plot dissimilarity. A transformation of Whittaker's beta to be bounded between 0 and 1 (\eqn{\frac{\beta_W - 1}{n-1}}{(\beta_W-1)/(n-1)}.
+
+\code{diserud}: Diserud & Ødegaard (2007) derived this from the pairwise Sørensen similarity measure. However, as Baselga highlights, this can also be derived from Whittaker's beta \eqn{\frac{n - \beta_W }{n-1}}{(n - \beta_W)/(n-1)} and is basically the same as Harrisons multiple plot dissimilarity but expressed as a similarity.
+
+\code{harrison.turnover}: \eqn{\frac{\frac{\gamma}{max(\alpha)}-1}{n-1}}{((\gamma/max(\alpha))-1)/(n-1)} (Harrison et al. 1992).
+
+\code{williams}: \eqn{1 - \frac{max(\alpha)}{\gamma}}{1 - max(\alpha)/\gamma} (Williams 1996).
+	
 
 \code{mpd} calculates \strong{m}ultiple \strong{p}lot \strong{d}issimilarity indices that have been suggested by Baselga (2010). The following methods are available (The implementation differs slightly from the one offered by Baselga in the electronic appendix of his paper and is computationally more efficient):
 
-\tabular{ll}{ 
-	\code{simpson} \tab mps.Sim in the following. Baselga et al. (2007) derive this multiple plot dissimilarity coefficient directly from the pairwise Simpson dissimilarity index by applying it to a group of plots/sites. The authors emphasize, that this coefficient is independent of patterns of richness and peforms better than the Diserud & Ødegaard cofficient in cases of unequal species numbers between plots, because it discriminates between situations in which shared species are distributed evenly among plots or concentrated in a few pairs of sites. \cr
-	\code{sorensen} \tab mps.Sor in the following. By building multiple site equivalents of the matching components (a, b, c) Baselga (2010) derives a Sørensen based measure of multiple plot dissimilarity: \cr
-	\code{nestedness} \tab mps.nes in the following. Because the Sørensen based multiple plot dissimilarity coefficient accounts for both spatial turnover and nestedness whilst the Simpson based multiple plot dissimilarity coefficient accounts only for spatial turnover, it is possible to calculate the multiple plot similarity that is completely due to nestedness by calculating mps.Sor - mps.Sim \cr}
+\code{simpson}: mps.Sim in the following. Baselga et al. (2007) derive this multiple plot dissimilarity coefficient directly from the pairwise Simpson dissimilarity index by applying  it to a group of plots/sites. The authors emphasize, that this coefficient is independent of patterns of richness and peforms better than the Diserud & Ødegaard cofficient in cases of unequal species numbers between plots, because it discriminates between situations in which shared species are distributed evenly among plots or concentrated in a few pairs of sites.
+
+\code{sorensen}: mps.Sor in the following. By building multiple site equivalents of the matching components (a, b, c) Baselga (2010) derives a Sørensen based measure of multiple plot dissimilarity.
+
+\code{nestedness}: mps.nes in the following. Because the Sørensen based multiple plot dissimilarity coefficient accounts for both spatial turnover and nestedness whilst the Simpson based multiple plot dissimilarity coefficient accounts only for spatial turnover, it is possible to calculate the multiple plot similarity that is completely due to nestedness by calculating mps.Sor - mps.Sim.
+	
 
 \code{mps.f} calculates \strong{f}ocal \strong{m}ultiple \strong{p}lot \strong{s}imilarities. In contrast to the other functions the different outcomes can be triggered by setting the further arguments accordingly.
 
@@ -79,13 +89,15 @@ The indices of \code{mps.f} are the only ones whose value changes depending on t
 
 with f_oi = proportional frequency of occurrences of the ith species on the compared plots, only carried out for species that do occur on the focal plot, f_nj = frequency of non-occurrences of the jth species on the compared plots, only carried out for species that do not occur on the focal plot). The frequencies are calculated against the total numbers of cells in the species matrix and are therefore 'proportional frequencies' (in analogy to 'proportional abundances' as in diversity indices like Shannon or Simpson). Thus, if all compared plots have an identical species composition, the resulting value of the multi-plot similarity coefficient is 1. In this rather hypothetical case the species presence absence matrix would be filled with ones only. This is the null model against which the 'proportional frequencies' are calculated. Therefore, the coefficient can be interpreted as a measure of deviation from complete uniformity. There are three versions.
 
-\tabular{ll}{ 
-	\code{preso=TRUE} \tab In this case a presence only version is calculated (\code{mps.fpo}). Therefore the second term is skipped and the formula simplifies to \eqn{\sum_{i=1}^{s_o} f_{oi}}{sum(f_oi)}. This very much glorifies the species composition on the focal plot and evaluates whether the surrounding plots in the neighborhood feature the same species. \cr
-	\code{d.inc=FALSE} \tab When the \code{d.inc} argument is set to \code{FALSE}, only the species in the neighborhood build the basis against which the 'proportional frequencies' are calculated. This is the default index \code{mps.f}. \cr}
+\code{preso=TRUE}: In this case a presence only version is calculated (\code{mps.fpo}). Therefore the second term is skipped and the formula simplifies to \eqn{\sum_{i=1}^{s_o} f_{oi}}{sum(f_oi)}. This very much glorifies the species composition on the focal plot and evaluates whether the surrounding plots in the neighborhood feature the same species.
 
+\code{d.inc=FALSE}: When the \code{d.inc} argument is set to \code{FALSE}, only the species in the neighborhood build the basis against which the 'proportional frequencies' are calculated. This is the default index \code{mps.f}.
+	
 When run with defaults (\code{preso = FALSE})  and (\code{d.inc = TRUE}), a \strong{s}ymmetric \strong{f}ocal \strong{m}ultiple \strong{p}lot \strong{s}imilarity (\code{mps.fs}) index results. It is definetely meant for use in the context of \code{rin}. The 'proportional frequencies' are calculated against the whole species matrix. Thus, the index is a symmetric similarity coefficient sensu Legendre & Legendre 1998 that considers species that do not occur on the compared plots but in the whole data set. Therefore, it is more appropriate for biodiversity or conservation studies and not so much for the investigation of ecological relationships. However, it can be interpreted as an 'ordination on the spot': By calculating \code{mps.fs} for a focal plot against its surrounding plots its position along the main gradient according to its species composition is estimated immediately because the species composition in the rest of the data set is incorporated in the construction of the proportional frequencies of the species. Because of this, \code{mps.fs} can be interpreted as a measure of deviation from complete unity in species composition. When the neighborhood is increased to the full data set, \code{mps.f} and \code{mps.fs} converge.
 
+
 \code{sos} calculates the \strong{s}um \strong{o}f \strong{s}quares of a species matrix. Legendre et al. (2005) show, that this is a measure of beta-diversity. However, when you don't normalize against the number of species and/or plots the obtained values can hardly be compared across data sets (or neighborhoods). Therefore, its advisable to run this with defaults (\code{normal.sp = TRUE} and \code{normal.pl = TRUE}). For experiments, \code{method} can be set to \code{"foc"}. Then, not the deviation from the mean of the species occurence across plots builds the basis, but the deviation from the situation on a focal plot. This makes it somewhat related to the \code{mps.f}-stuff.
+
 
 \code{rin} applies the other functions to an array of plots. For each plot a neighborhood is constructed via the \code{dn} argument and the specified index is calculated for all plots and neighborhoods. The function to be calculated is specified simply by the \code{func} argument. For instance, with \code{func = "mpd(x, method='sorensen')"} the function \code{rin} calculates the Sørensen multiple plot dissimilarity for each plot and its neighborhood in an array. The functions that need the identity of a focal plot (\code{mps.ave} and \code{mps.f}) automatically derive the focal plots. However, to trigger this it has to be specified within the \code{func} argument: \code{func = "mps.f(x, foc = foc)"}.
 }
@@ -153,7 +165,8 @@ dn=100, func="mpd(x, method='sorensen')")
 # size of the symbol and the sign of the value
 # with a superimposed "+" or "-"
 with(abis.mpd.so , {
-plot(abis.env[,1:2], cex=symbol.size(dis), pch=c(21,1)[sig], bg="grey50", xlab="", ylab="")
+plot(abis.env[,1:2], cex=symbol.size(dis), pch=c(21,1)[sig], 
+	bg="grey50", xlab="", ylab="")
 subs <- sig == "*"
 points(abis.env[subs,1:2], pch=c("-", "+")[sig.prefix[subs]])
 })

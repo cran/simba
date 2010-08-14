@@ -12,16 +12,16 @@ The function is a wrapper for several functions related to the permuted correlat
 
 \usage{
 pcol(x, y, z = NULL, method="pearson", permutations=1000, 
-solo=FALSE, ...)
+	solo=FALSE, ...)
 
 permcor(x, y, subsetter, method="pearson", permutations=1000, 
-alpha=0.05, trace=FALSE, ...)
+	alpha=0.05, trace=FALSE, ...)
 
 permcor2(x, y, method="pearson", permutations=1000, subset=NULL, 
-complete=TRUE, loop=FALSE, ...)
+	complete=TRUE, loop=FALSE, ...)
 
-mancor(dis, classes, width=NULL, method="pearson", permutations=1000, 
-alpha=0.05, trace=FALSE, ...)
+mancor(dis, classes, width=NULL, method="pearson", 
+	permutations=1000, alpha=0.05, trace=FALSE, ...)
 
 \method{plot}{permcor}(x, y, ...)
 }
