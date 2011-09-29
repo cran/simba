@@ -1,5 +1,32 @@
 SIMBA VERSIONS
 
+
+Version 0.3-3
+	
+	* Bugfixes to function mps.f. Further the function is now
+	named mos.f
+	
+	* New function mos.ft for the calculation of the (dis)similarity
+	of a focal plot to the pooled surrounding plots. This, like mos.f
+	represents	measures of singularity
+	
+	* New function CqN for the calculation of Chao et al.s probabilistic
+	multiple plot similarity indices.
+	
+	* New function trudi for the calculation of true diversity on gamma,
+	alpha and beta scale
+	
+	* New plotting function batonplot ---
+	
+	* Bug fixes and updates to pcol and all related functions (the 
+	functionality of permcor and mancor is now integrated in pcol 
+	and permcor2 is now mantl and does the permutations). Thus, two 
+	functions pcol (doing the handling) and mantl (doing the calculations)
+	remain.
+	
+	* Deprecated: dfcor. The functionality is easy to be achieved using 
+	lapply. An example is included in the help for mantl.
+
 Version 0.3-2
 
 	* Added a neighbor definition possibility to rin. Now, also a number
@@ -17,7 +44,7 @@ Version 0.3-1
 	* rin, mps, mpd, mps.ave, mps.f, sos: A bunch of new functions
 	for the calculation of multiple plot similarity coefficients with
 	rin a wrapper function that allows for the application of all
-	other function in a moving window across an array of plots. 
+	other functions in a moving window across an array of plots. 
 	
 	* The older functions het2nbs, sim.het, sim.pat, sim.rel, sim.relt, 
 	simn, sima that provided parts of that functionality in a different 

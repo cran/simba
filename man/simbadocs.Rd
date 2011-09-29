@@ -9,7 +9,7 @@
   defined in \code{\link{options}}.
 }
 \usage{
-simbadocs(doc = c("NEWS", "ChangeLog", "mps-coefficients.pdf", "simba_0.3-2_man.pdf"))
+simbadocs(doc = c("NEWS", "ChangeLog", "mps-coefficients.pdf", "simba_manual.pdf"))
 }
 
 \arguments{

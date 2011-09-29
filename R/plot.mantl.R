@@ -1,4 +1,4 @@
-"plot.permcor" <- 
+"plot.mantl" <- 
 function(x, y, ...) {
    with(x, {
    fig.dist <- hist(perms, xlim=c(range(statistic, perms), ...), 
