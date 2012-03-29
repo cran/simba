@@ -11,8 +11,8 @@
 \tabular{ll}{
 Package: \tab simba\cr
 Type: \tab Package\cr
-Version: \tab 0.3-1\cr
-Date: \tab 2010-07-25\cr
+Version: \tab 0.3-4\cr
+Date: \tab 2012-03-29\cr
 License: \tab GPL version 2\cr
 }
 The functions in this package can be used to calculate similarities between species records (in binary format). Functions related to the correlation of similarity matrices and some other useful functions for the analysis of spatial patterns and their change in time are included as well.

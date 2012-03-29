@@ -1,27 +1,34 @@
 "diffmean" <-
-function (x, y, permutations = 1000) {
+function (x, y, permutations = 1000, ...) {
+	if(sum(is.na(c(x, y))) > 0){ 
+		call <- match.call(expand.dots = TRUE)
+		mmh <- grep("na.rm", c("na.rm", deparse(call)))
+		if(length(mmh)==1){
+			stop("There are NA values. Consider setting na.rm accordingly") 
+		}
+	}
     x <- as.numeric(as.vector(x))
     y <- as.numeric(as.vector(y))
     nx <- length(x)
     ny <- length(y)
-    meanx <- mean(x)
-    meany <- mean(y)
-    diff <- as.numeric(mean(x)-mean(y))
+    meanx <- mean(x, ...)
+    meany <- mean(y, ...)
+    diff <- as.numeric(mean(x, ...)-mean(y, ...))
     xy <- c(x, y)
     nxy <- length(xy)
-    meanom <- mean(xy)
-    varg <- (nx*var(x)+ny*var(y))/(nx+ny)
-    F <- (nx*ny*(meanx-meany)^2)/((nx*var(x))+(ny*var(y)))
+    meanom <- mean(xy, ...)
+    varg <- (nx*var(x, ...)+ny*var(y, ...))/(nx+ny)
+    F <- (nx*ny*(meanx-meany)^2)/((nx*var(x, ...))+(ny*var(y, ...)))
     permx <- sapply(1:permutations, function(x) sample(xy, nx))
     permy <- sapply(1:permutations, function(x) sample(xy, ny))
     permsxmean <- numeric(permutations)
     permsxvar <- permsxmean
-    permsxmean <- apply(permx, 2, mean)
-    permsxvar <- apply(permx, 2, var)
+    permsxmean <- apply(permx, 2, function(x) mean(x, ...))
+    permsxvar <- apply(permx, 2, function(x) var(x, ...))
     permsymean <- numeric(permutations)
     permsyvar <- permsymean
-    permsymean <- apply(permy, 2, mean)
-    permsyvar <- apply(permy, 2, var)
+    permsymean <- apply(permy, 2, function(x) mean(x, ...))
+    permsyvar <- apply(permy, 2, function(x) var(x, ...))
     Fperm <- (nx*ny*(permsxmean-permsymean)^2)/((nx*permsxvar)+(ny*permsyvar))
     diffsxy <- permsxmean-permsymean
     if (diff >= 0) {	

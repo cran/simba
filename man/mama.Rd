@@ -11,10 +11,11 @@
 }
 
 \usage{
-mama(dat)
+mama(dat, spl = TRUE)
 }
 \arguments{
-  \item{dat}{Species data in list format. The columns have to represent plot, species, occurence information (presence/absence or abundances). Column names may differ but they must be in that order!}
+  \item{dat}{Species data in list format. The columns have to represent plot, species, occurence information (presence/absence or abundances). Column names may differ but they must be in that order! The last column can be missing when these are presence/absence data}
+  \item{spl}{Logical. If TRUE (default) \code{mama} assumes that the input is species data and formats the output accordingly}
 }
 
 \details{

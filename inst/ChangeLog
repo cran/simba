@@ -1,6 +1,16 @@
 SIMBA VERSIONS
 
 
+Version 0.3-4
+	
+	* auc has been moved to package flux.
+
+  * There is a NAMESPACE now
+
+  * New start function
+
+  * Minor bug fixes to diffmean and mama
+
 Version 0.3-3
 	
 	* Bugfixes to function mps.f. Further the function is now

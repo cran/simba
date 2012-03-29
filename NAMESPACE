@@ -1,0 +1,30 @@
+## export regular function names
+export(ads, aslopect, batons, bb2num, bcoov, boxes, CqN, CqNa, diffic, diffmean, diffmich, 
+diffslope, diffslope2, direct, direct2, fitmich, hexgrid, liste, mad, makead, mama, 
+mantl, mpd, pcol, rin, sim, simbadocs, sos, trudi)
+
+## export regular functions with dot names
+export(ads.fbg, ads.hot, com.sim, dist.tmp, mos.f, mos.ft, mps.ave, occ.time, occ.tmp, 
+sim.tmp, sim.yo, symbol.size)
+
+## Import packges
+import(stats)
+import(vegan)
+import(graphics)
+
+## Registration of S3 methods
+# plot: graphics
+S3method(plot, diffmich)
+S3method(plot, dmn)
+S3method(plot, dsl)
+S3method(plot, mantl)
+S3method(plot, mrpp)
+# print: base
+S3method(print, cslist)
+S3method(print, diffmich)
+S3method(print, dmn)
+S3method(print, dsl)
+S3method(print, dsl2)
+S3method(print, occtmp)
+S3method(print, pclist)
+S3method(print, permcor)

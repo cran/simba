@@ -1,13 +1,13 @@
 Package: simba
 Type: Package
-Version: 0.3-3
-Date: 2011-09-29
+Version: 0.3-4
+Date: 2012-03-29
 Title: A Collection of functions for similarity analysis of vegetation
         data
 Author: Gerald Jurasinski <gerald.jurasinski@uni-rostock.de>, with
         contributions from Vroni Retzer <vroni.retzer@gmx.de>
 Maintainer: Gerald Jurasinski <gerald.jurasinski@uni-rostock.de>
-Depends: R (>= 2.9.0), stats, vegan
+Depends: R (>= 2.12.0), stats, vegan
 Suggests: gplots, geoR, plotrix
 Description: Besides functions for the calculation of similarity and
         multiple plot similarity measures with binary data (for
@@ -18,9 +18,8 @@ Description: Besides functions for the calculation of similarity and
         procedures) as well as some other useful stuff for vegetation
         analysis.
 License: GPL (>= 2)
-URL: http://www.r-project.org,
-        http://www2.auf.uni-rostock.de/loe/ma/simba.html
+URL: http://www.r-project.org
 LazyLoad: yes
-Packaged: 2011-10-02 21:48:32 UTC; juri
+Packaged: 2012-04-03 17:51:18 UTC; juri
 Repository: CRAN
-Date/Publication: 2011-10-03 05:41:09
+Date/Publication: 2012-04-03 21:02:10

@@ -7,7 +7,7 @@
 }
 
 \usage{
-diffmean(x, y, permutations = 1000)
+diffmean(x, y, permutations = 1000, ...)
 \method{plot}{dmn}(x, y, which=3, two=2, ...)
 }
 
@@ -17,7 +17,7 @@ diffmean(x, y, permutations = 1000)
   \item{permutations}{ Number of permutations. }
   \item{which}{ which histogram should be plotted? 1 triggers the histogram for difference in mean, 2 the one for F. It defaults to 3: both histograms are plotted. If it is changed from default, the next argument (\code{two}) is automatically set to 1! }
   \item{two}{ Should the histograms be printed on a divided display? And how? Can only be set if \code{which} is set to 3. Defaults to 2, which means that the display is divided in two halfs and the histogram-plots are plotted side by side. 3 causes histograms to be plotted one on top of the other. If \code{two} = 1, the display is NOT automatically divided. Might be useful if more than one \code{dmn}-objekt is to be plotted on one display. Otherwise the function overrides the actual display settings.}
-  \item{\dots}{ Further arguments to the plotting method. }
+  \item{\dots}{ Further arguments to the plotting method or to function \code{\link[base]{mean}}. }
 }
 
 \details{

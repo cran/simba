@@ -81,11 +81,6 @@ changed on ... plots")
 # there is a lot of info in the output
 changed.occurrence
 
-## how species changed occurrence between recordings?
-## data has to come in list format
-occ.time(veg.lst, times=years)
-
-
 }
 
 \keyword{ methods }

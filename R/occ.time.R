@@ -7,7 +7,7 @@ function(x, y, times=NULL, adjust=TRUE, gen.occ=FALSE, perc=TRUE, nc.acc=FALSE, 
 	   dat <- x
 	   strata <- unique(times)
 	   stratan <- length(strata)
-	   id.nms <- outer(strata, strata, paste)
+	   id.nms <- outer(strata, strata, paste, sep=".")
 	   id.nms <- id.nms[row(id.nms) < col(id.nms)]
 	   out <- lapply(c(1:stratan), function(x) dat[(times==strata[x]),])
 	   out <- lapply(out, mama)

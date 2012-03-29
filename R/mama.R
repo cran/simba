@@ -1,5 +1,5 @@
 "mama" <-
-function(dat) {
+function(dat, spl = TRUE) {
 	dat <- data.frame(dat)
 	plot <- as.character(dat[,1])
 	spec <- as.character(dat[,2])
@@ -9,14 +9,21 @@ function(dat) {
 		dat$pres <- 1	
 		}
 	pres <- dat[,3]
+	if(spl){pres.isf <- is.factor(pres)}
 	dat <- data.frame(plot, spec, pres)
 	wide <- reshape(dat, v.names="pres", idvar="plot", timevar="spec", direction="wide")
-	wide[is.na(wide)] <- 0
+	wide.nms <- sub("pres\\.", "", names(wide))
+	if(spl){
+		if(pres.isf){
+			wide <- sapply(c(1:ncol(wide)), function(x) as.character(wide[,x]))
+			wide[is.na(wide)] <- 0
+		}
+	}
 	rownames(wide) <- wide[,1]
-	names(wide) <- sub("pres\\.", "", names(wide))
+	wide <- data.frame(wide)
+	names(wide) <- wide.nms
 	wide <- data.frame(wide[,-1])
 	wide <- wide[order(rownames(wide)), ]
 	wide <- wide[,order(names(wide))]
-	res <- wide
-	res
+	wide
 }
