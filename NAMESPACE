@@ -1,7 +1,7 @@
 ## export regular function names
 export(ads, aslopect, batons, bb2num, bcoov, boxes, CqN, CqNa, diffic, diffmean, diffmich, 
 diffslope, diffslope2, direct, direct2, fitmich, hexgrid, liste, mad, makead, mama, 
-mantl, mpd, pcol, rin, sim, simbadocs, sos, trudi)
+mantl, mpd, mps, pcol, rin, sim, simbadocs, sos, trudi)
 
 ## export regular functions with dot names
 export(ads.fbg, ads.hot, com.sim, dist.tmp, mos.f, mos.ft, mps.ave, occ.time, occ.tmp, 

@@ -9,7 +9,7 @@
 \usage{
 boxes(..., top = FALSE, shrink = 1, textcolor = NULL, yadj = NULL)
 
-batons(...)
+batons(..., waist = FALSE)
 }
 
 \arguments{
@@ -18,6 +18,7 @@ batons(...)
   \item{shrink}{ Parameter to scale the size of the numbers of observations. Above 1 increases size, below 1 until 0 decreases size. }
   \item{textcolor}{ Color of the text. Defaults to NULL which than uses the actual plotting colour of the graphics device. }
   \item{yadj}{ Can be used to adjust the vertical plotting positions of the numbers of observations. Defaults to NULL - no adjustment. }
+  \item{waist}{ TRUE for plotting a waist line to the baton that carries the same information like a notch on a \code{\link[graphics]{boxplot}}. }
 }
 
 \author{ Marian Koch \email{marian.koch@uni-rostock.de}, Gerald Jurasinski \email{gerald.jurasinski@uni-rostock.de} }

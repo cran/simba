@@ -1,7 +1,7 @@
 Package: simba
 Type: Package
-Version: 0.3-4
-Date: 2012-03-29
+Version: 0.3-5
+Date: 2012-12-06
 Title: A Collection of functions for similarity analysis of vegetation
         data
 Author: Gerald Jurasinski <gerald.jurasinski@uni-rostock.de>, with
@@ -20,6 +20,6 @@ Description: Besides functions for the calculation of similarity and
 License: GPL (>= 2)
 URL: http://www.r-project.org
 LazyLoad: yes
-Packaged: 2012-04-03 17:51:18 UTC; juri
+Packaged: 2012-12-05 09:12:13 UTC; Juri
 Repository: CRAN
-Date/Publication: 2012-04-03 21:02:10
+Date/Publication: 2012-12-05 11:28:33

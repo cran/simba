@@ -1,6 +1,14 @@
 SIMBA VERSIONS
 
 
+Version 0.3-5
+
+	* Bug fix to the NAMESPACE (upon user request)
+
+  * Bug fix to mama()
+
+  * Argument waist added to batons
+
 Version 0.3-4
 	
 	* auc has been moved to package flux.

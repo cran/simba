@@ -9,15 +9,14 @@ function(dat, spl = TRUE) {
 		dat$pres <- 1	
 		}
 	pres <- dat[,3]
-	if(spl){pres.isf <- is.factor(pres)}
 	dat <- data.frame(plot, spec, pres)
 	wide <- reshape(dat, v.names="pres", idvar="plot", timevar="spec", direction="wide")
 	wide.nms <- sub("pres\\.", "", names(wide))
 	if(spl){
-		if(pres.isf){
+		if(is.factor(pres)){
 			wide <- sapply(c(1:ncol(wide)), function(x) as.character(wide[,x]))
-			wide[is.na(wide)] <- 0
 		}
+		wide[is.na(wide)] <- 0
 	}
 	rownames(wide) <- wide[,1]
 	wide <- data.frame(wide)
